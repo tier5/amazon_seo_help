@@ -1,0 +1,286 @@
+/*
+Theme Name: Amazon
+Theme URI: https://wordpress.org/themes/twentyseventeen/
+Author: the WordPress team
+Author URI: https://wordpress.org/
+Description: Twenty Seventeen brings your site to life with header video and immersive featured images. With a focus on business sites, it features multiple sections on the front page as well as widgets, navigation and social menus, a logo, and more. Personalize its asymmetrical grid with a custom color scheme and showcase your multimedia content with post formats. Our default theme for 2017 works great in many languages, for any abilities, and on any device.
+Version: 1.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: twentyseventeen
+Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700');
+
+body{font-family: 'Open Sans', sans-serif; position: relative;}
+
+h1,h2,h3,h4,h5{font-family: 'Open Sans', sans-serif;}
+
+
+header{background: #000000; }
+.log-reg a{color: #fff; text-decoration: none; font-size: 12px;}
+.log-reg{color: #fff; padding-top: 25px; text-align: right;}
+.log-reg a:hover{color: #FFA001;}
+
+.social-block{margin: 0; padding: 0;}
+.social-block ul{margin: 0; padding: 0; text-align: right;}
+.social-block ul li {
+  /*border: 1px solid #ccc;*/
+  border-radius: 1px;
+  display: inline-block;
+  font-size: 12px;
+  height: 24px;
+  list-style: outside none none;
+  margin: 0 2px;
+  text-align: center;
+  width: 24px;
+}
+.social-block ul li a{color: #FF9B00; font-size: 15px;}
+
+
+
+ .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+      margin: auto;
+  }
+
+  .carousel-inner > .item:before {
+  	content: '';
+  	position: absolute;
+  	width: 100%;
+  	height: 100%;
+  	background: rgba(0, 0, 0, 0.6);
+  	
+
+  }
+
+.carousel-control.left{background-image: none; background-color: none; display: none;}
+.carousel-control.right{background-image: none; background-color: none; display: none;}
+.carousel-caption{top: 20%;}
+
+.banner-slider h3{font-family: 'Open Sans', sans-serif; text-transform: uppercase;
+font-size: 22px;}
+.banner-slider h2{margin-top: 0; font-family: 'Open Sans', sans-serif; text-shadow: none;
+font-weight: 700; font-size: 32px; position: relative;}
+
+.banner-slider h2::after {
+  background: #ff9801 none repeat scroll 0 0;
+  bottom: -24px;
+  content: "";
+  height: 2px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  width: 138px;
+}
+
+.bodypart{padding: 30px 0 0;}
+.block{background: #F5F5F5; padding: 15px 10px; min-height: 400px; position: relative;
+margin-bottom: 25px;
+}
+.small-block{background: #F5F5F5; padding: 15px 10px; position: relative; 
+min-height: 193px; margin-bottom: 15px;}
+
+.welcome-sec{text-align: center; padding-top: 105px;}
+.welcome-sec h2{color: #2D2D2D; font-size: 23px; font-weight: 600;}
+.welcome-sec p{font-size: 12px;}
+.sign-in{background: #EABB75; border: 1px solid #7A6D5A;}
+
+.four-block h2.heading{font-size: 23px; text-align: center; font-size: 23px;
+    font-weight: 600; margin-top: 0;}
+
+
+.block-footer{position: absolute; width: 92%; bottom: 15px; border-top: 1px solid #ccc;
+padding-top: 7px; text-align: left;}
+.block-main ul{margin: 0; padding: 20px 0 0;}
+.block-main ul li{display: block; list-style: none; font-size: 15px; padding-bottom: 15px;}
+
+.block-main ul li span{padding:0 7px 0 15px; color: #000;}
+.block-main{text-align: left;}
+.block-main p{margin-bottom: 4px;}
+
+.blog-pic{text-align: center;}
+.blog-pic img{max-width: 100px; margin-bottom: 15px;}
+.align-center{text-align: center;}
+
+.bottom-part{background: #000000; padding: 24px 0; text-align: center;}
+.bottom-part a{text-decoration: none; color: #fff; font-size: 17px;}
+
+footer{background: #232F3F; padding: 40px 0; position: relative;}
+footer h3{color: #fff; font-size: 17px; margin-top: 0;}
+footer ul{margin: 0; padding: 0 0 20px;}
+footer ul li{margin: 0; padding: 0; list-style: none;}
+footer ul li a{color: #fff; text-decoration: none; font-size: 13px;}
+footer ul li a:hover{color: #ccc; text-decoration: none;}
+footer hr{color: #3E4A56; border-color: #3E4A56;}
+
+.copyrights{text-align: center; color: #fff; font-size: 12px;}
+
+.chat-icon{width: 91px; height: 75px; /*background: #52CB60;*/ position: fixed;
+bottom: 5%; right: 1%; padding: 12px; border-radius: 50%;
+}
+.chat-icon img{max-width: 100%;}
+
+.chat-pic{width: 35px; height: 35px; border-radius: 50%; float: left; overflow: hidden;}
+.chat-pic img{max-width: 100%;}
+.chat-txt{float: left; width: 80%; float: right; padding: 7px; font-size: 12px;
+border-radius: 5px;
+}
+.grey{background: #F4F7F9}
+.yellow{background: #FF9D01; color: #fff;}
+
+.chat-head{margin-bottom: 10px;}
+.chat-image{float: left; width: 20%}
+.chat-person{float: right; width: 80%; font-size: 13px;}
+.clearfix{clear: both;}
+.join-now{background: #FF9900; display: block; width: 100%;
+color: #fff; border: 1px solid #FF9801; text-transform: uppercase;}
+.join-now:hover{background: #EABB75; color: #fff;}
+.review-block{padding-top: 35px;}
+
+.tem-btn{background: #FF9900; display: block; width: 100%;
+color: #fff; border: 1px solid #FF9801; text-transform: uppercase; margin-bottom: 5px;}
+.tem-btn:hover{background: #EABB75; color: #fff;}
+.template-block{padding-top: 17px;}
+.template-block p{font-size: 12px;}
+
+.custom-menu-class ul {
+    list-style-type: none;
+    list-style: none;
+    list-style-image: none;
+}
+.custom-menu-class ul li
+{
+    padding: 20px;
+    display: inline-block !important;
+}
+
+.custom-menu-class ul li a {
+    color: #fff;
+    font-size: 17px;
+    text-decoration: none;
+}
+div#popmake-27 {
+	top: 20%;
+    left: 52%;
+}
+@media screen and (max-width: 767px) {
+	header{padding-bottom: 15px;}
+	.box{padding-top: 0;}
+	.log-reg{padding-top: 0;}
+	.logo{text-align: center;}
+	.social-block ul{text-align: center;}
+	.carousel-caption {top: 11%;}
+	.banner-slider h2{font-size: 29px;}
+
+}
+
+@media screen and (max-width: 600px) {
+
+	.carousel-caption {top: 9%;}
+	.banner-slider h2{font-size: 25px;}
+
+}
+
+
+@media screen and (max-width: 520px) {
+
+	.carousel-caption {top: 9%;}
+	.banner-slider h2{font-size: 22px;
+
+
+}
+
+@media screen and (max-width: 480px) {
+
+	.carousel-caption {top: 9%;}
+	.banner-slider h3{font-size: 14px;}
+	.banner-slider h2{font-size: 19px;
+
+}
+
+@media screen and (max-width: 400px) {
+
+	.carousel-caption {top: 4%;}
+	.banner-slider h2 {font-size: 16px;}
+
+
+}
+/*Menu Section*/
+
+.main-navigation a {
+	display: block;
+	padding: 0.8em 0;
+	position: relative;
+	text-decoration: none;
+}
+
+.main-navigation ul {
+	list-style: none;
+	margin: 0;
+}
+
+.main-navigation ul ul {
+	display: none;
+	margin-left: 0.8em;
+}
+
+.main-navigation ul .toggled-on {
+	display: block;
+}
+
+.main-navigation li {
+	border-top: 1px solid #eaeaea;
+	border-top: 1px solid rgba(51, 51, 51, 0.1);
+	position: relative;
+}
+
+.main-navigation .current-menu-item > a,
+.main-navigation .current-menu-ancestor > a {
+	font-weight: 700;
+}
+
+.main-navigation .nav-menu > ul > li:first-child,
+.main-navigation .nav-menu > li:first-child {
+	border-top: 0;
+}
+
+.main-navigation .menu-item-has-children > a {
+	padding-right: 48px;
+}
+
+.main-navigation .menu-item-description {
+	color: #707070;
+	color: rgba(51, 51, 51, 0.7);
+	font-family: "Noto Sans", sans-serif;
+	font-size: 12px;
+	font-size: 1.2rem;
+	font-weight: 400;
+	line-height: 1.5;
+	margin-top: 0.5em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
