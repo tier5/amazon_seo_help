@@ -251,6 +251,25 @@ padding-top: 4px; padding-bottom: 5px;}
 .create-project{background: url(../images/copy-icon.jpg) no-repeat;}
 .project-pic img{max-width: 100%;}
 
+
+.inside-banner{margin: 20px 0 0;}
+.inside-banner img{max-width: 100%;}
+p{font-size: 12px;}
+.two-panel{margin-bottom: 30px; padding-bottom: 20px;}
+.two-panel h4{color: #000; margin-top: 0;}
+.two-panel p{color: #484848;}
+.two-panel ul{margin: 0; padding: 0 13px;}
+.two-panel ul li{font-size: 13px; color: #585858;}
+.border-right{border-right: 1px solid #BCBCBE;}
+
+.single-panel h4{color: #000; margin-top: 0;}
+.submit-btn{background:#0087B7; color: #fff; padding: 5px 24px; font-size: 12px;
+border: 1px solid #0087B7;
+}
+.post-product-btn{border: 1px solid #9E9EA0; padding: 5px 24px; font-size: 12px;
+color: #2D2D2D;}
+
+
 @media screen and (max-width: 991px) {
 
     .project-info-txt{padding: 3px 20px;}
