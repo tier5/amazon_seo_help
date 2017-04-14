@@ -189,7 +189,7 @@ border-bottom: 1px solid #ccc; padding-bottom: 4px;}
 
 .search-box{border-bottom: 1px solid #F59E2D; padding-bottom: 10px;}
 .search-box button{background: none; border: none;}
-.search-box input[type="text"]{border: none; width: 77%;}
+.search-box input[type="text"]{border: none; width: 77%; background:none;}
 
 .menu-list{border-bottom: 1px solid #B6B6B6; padding-bottom: 23px;}
 .menu-list ul{margin: 0; padding: 0;}
@@ -463,7 +463,7 @@ background: url(../images/border.jpg) no-repeat right; }
 .pricing-top{background: url(../images/pricing-header.jpg) repeat-x bottom #fff;
 padding: 27px 0 29px; margin-bottom: 12px;}
 .pricing-top h1{font-size: 17px; margin: 0; padding: 0;}
-.pricing-top a{background: #0087B7; padding: 5px 12px; color: #fff; text-decoration: none;}
+.pricing-top a{background: #0087B7; padding: 5px 12px 8px; color: #fff; text-decoration: none;}
 .pricing-top a:hover{text-decoration: none;}
 
 .page-heading h2{color: #282828; font-size: 22px; margin-top: 0; margin-bottom: 16px;}
@@ -537,10 +537,279 @@ font-weight: 600; margin-top: 0; margin-bottom: 20px;}
 .price-box-blue a{color: #fff; text-transform: uppercase; font-size: 11px;
 padding: 7px 20px; border-radius: 30px; border: 1px solid #D8D8D8; background: #F6BC03;}
 .price-box-blue a:hover{text-decoration: none;}
-
-
-
 ul.nav li.active a{color: #FF9900;}
+
+
+.contact-block{background: #fff; border: 1px solid #DEDEE0; padding: 20px; margin-bottom: 25px;}
+.contact-block h3{color: #2D2D2D; font-size: 16px; margin-top: 0; border-bottom: 1px solid #DEDEE0;
+padding-bottom: 10px; margin-bottom: 21px;}
+.contact-block h4{font-size: 14px;}
+
+.contact-block .tab-btn{border: 1px solid #ccc; display: block; color: #353535;
+border-radius: 0; padding-bottom: 8px; margin-bottom: 7px;}
+.contact-block .tab-btn:hover{border-color:#0178BC; color: #353535;}
+
+.white-box-border{border: 1px solid #CECECE; padding: 20px; margin: 15px 0;}
+a.btn-email{border: 1px solid #ccc; display: block; color: #000; background: #e1e1e1; margin-bottom: 7px;}
+a.btn-phone{border: 1px solid #ccc; display: block; color: #000; background: #e1e1e1; margin-bottom: 7px;}
+a.btn-chat{border: 1px solid #ccc; display: block; color: #000; background: #e1e1e1; margin-bottom: 7px;}
+
+
+
+
+/*This is for tier5 promo popup css*/
+
+.welcome-tier5 {
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  top: 0;
+
+  -webkit-transition-delay: -1s;
+  -moz-transition-delay: -1s;
+  -o-transition-delay: -1s;
+  transition-delay: -1s;
+}
+.new{
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  top: 0;
+  -webkit-transition-delay: -1s;
+  -moz-transition-delay: -1s;
+  -o-transition-delay: -1s;
+  transition-delay: -1s;
+}
+
+.welcome-tier5-main{
+  height: 350px;
+  left: 50%;
+  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  width: 600px;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  -webkit-transition-delay: -1s;
+  -moz-transition-delay: -1s;
+  -o-transition-delay: -1s;
+  transition-delay: -1s;
+ background: url(../images/welcome.jpg) no-repeat top #005270;
+  background-size: 100%;
+}
+
+.offer-area {
+  background: rgba(0,0,0,0.7);
+  margin-top: 100px;
+  padding: 10px 0;
+  text-align: center;
+}
+.offer-area h2 {
+  color: #fff;
+  font-size: 27px;
+  margin: 0 0 7px;
+  padding: 0;
+  text-transform: uppercase;
+}
+.offer-area h3 {
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+.offer-area h3 span{text-transform: uppercase; font-size: 36px;}
+
+body{position: relative;}
+.condition-area{padding: 0 15px; font-size: 13px; color: #fff;}
+.condition-area{text-align: right; color: #000;}
+.last-info{position: absolute; bottom: 15px; right: 15px; font-size: 11px; color: #000;}
+
+
+
+/*This is for tier5 promo popup css*/
+
+
+
+
+
+table.table1{
+    /*font-family: "Trebuchet MS", sans-serif;*/
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.4em;
+    font-style: normal;
+    border-collapse:separate;
+    padding: 15px;
+}
+.table1 thead th{
+    padding:15px 9px !important;
+    color:#fff;
+    border:1px solid #fff;
+    border-bottom:3px solid #0087B7;
+    background-color:#0087B7;
+    /*background:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.02, rgb(123,192,67)),
+        color-stop(0.51, rgb(139,198,66)),
+        color-stop(0.87, rgb(158,217,41))
+        );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(123,192,67) 2%,
+        rgb(139,198,66) 51%,
+        rgb(158,217,41) 87%
+        );*/
+
+        background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#0087B7, #56ADF9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#0087B7, #56ADF9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#0087B7, #56ADF9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#0087B7, #56ADF9); /* Standard syntax */
+      text-align: center;
+      font-size: 15px;
+
+
+    -webkit-border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-radius:10px 10px 0px 0px;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+}
+.table1 thead th:empty{
+    background:transparent;
+    border:none;
+}
+.table1 tbody th{
+    color:#fff;
+
+    background-color:#232F3F;
+    border:1px solid #fff;
+    border-right:3px solid #333;
+    padding:0px 10px;
+    font-size: 12px;
+    font-weight: normal;
+    -moz-border-radius:5px 0px 0px 5px;
+    -webkit-border-top-left-radius:5px;
+    -webkit-border-bottom-left-radius:5px;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+}
+.table1 tfoot td{
+    color: #000;
+    font-size:22px;
+    text-align:center;
+    padding:10px 0px;
+}
+.table1 tfoot th{
+    color:#000;
+    text-transform: uppercase;
+}
+.table1 tbody td{
+    padding:10px;
+    text-align:center;
+    background-color:#EBF6FF;
+    border: 2px solid #fff;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    color:#000;
+    text-shadow:1px 1px 1px #fff;
+    font-weight: normal;
+    font-size: 14px;
+    border-top: 1px solid #fff !important;
+}
+.table1 tbody span.check::before{
+    content : url(../images/check0.png)
+}
+
+
+.seo-table.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th
+{border-bottom: 1px solid #fff;}
+
+
+
+
+
+/*  bhoechie tab */
+div.bhoechie-tab-container{
+  z-index: 10;
+  background-color: #ffffff;
+  padding: 0 !important;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  border:1px solid #ddd;
+  margin-top: 20px;
+  margin-left: 50px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  background-clip: padding-box;
+  opacity: 0.97;
+  filter: alpha(opacity=97);
+}
+div.bhoechie-tab-menu{
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group{
+  margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a{
+  margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a .glyphicon,
+div.bhoechie-tab-menu div.list-group>a .fa {
+  color: #5A55A3;
+}
+div.bhoechie-tab-menu div.list-group>a:first-child{
+  border-top-right-radius: 0;
+  -moz-border-top-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a:last-child{
+  border-bottom-right-radius: 0;
+  -moz-border-bottom-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a.active,
+div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
+div.bhoechie-tab-menu div.list-group>a.active .fa{
+  background-color: #5A55A3;
+  background-image: #5A55A3;
+  color: #ffffff;
+}
+div.bhoechie-tab-menu div.list-group>a.active:after{
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-top: -13px;
+  border-left: 0;
+  border-bottom: 13px solid transparent;
+  border-top: 13px solid transparent;
+  border-left: 10px solid #5A55A3;
+}
+
+div.bhoechie-tab-content{
+  background-color: #ffffff;
+  /* border: 1px solid #eeeeee; */
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+div.bhoechie-tab div.bhoechie-tab-content:not(.active){
+  display: none;
+}
+
+
+
 
 
 @media screen and (max-width: 991px) {
@@ -552,8 +821,6 @@ ul.nav li.active a{color: #FF9900;}
 
 
 }
-
-
 
 
 @media screen and (max-width: 767px) {
