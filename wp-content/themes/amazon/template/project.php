@@ -35,7 +35,7 @@ $project_query = new WP_Query($project_args);
                            <?php $image = $images = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'full');?>
                            <div class="project-block">
                               <div class="project-pic">
-                                 <img src="<?php echo ($image[0] !='') ? $image[0] : ''; ?>" alt="img">
+                                 <a href="<?php echo get_permalink();?>"><img src="<?php echo ($image[0] !='') ? $image[0] : ''; ?>" alt="img"></a>
                               </div>
                               <div class="project-info-txt">
                                  <h2><?php echo get_the_title();?></h2>
