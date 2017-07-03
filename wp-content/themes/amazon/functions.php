@@ -340,6 +340,43 @@ function twentyseventeen_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Home Content First Block', 'twentyseventeen' ),
+		'id'            => 'sidebar-4',
+		'description'   => __( 'Add widgets here to appear in your footer.', 'twentyseventeen' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Home Content Second Block', 'twentyseventeen' ),
+		'id'            => 'sidebar-5',
+		'description'   => __( 'Add widgets here to appear in your footer.', 'twentyseventeen' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Home Content Third Block', 'twentyseventeen' ),
+		'id'            => 'sidebar-6',
+		'description'   => __( 'Add widgets here to appear in your footer.', 'twentyseventeen' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Home Content Fourth Block', 'twentyseventeen' ),
+		'id'            => 'sidebar-7',
+		'description'   => __( 'Add widgets here to appear in your footer.', 'twentyseventeen' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
 }
 add_action( 'widgets_init', 'twentyseventeen_widgets_init' );
 

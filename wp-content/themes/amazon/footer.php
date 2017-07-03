@@ -12,6 +12,13 @@
  * @version 1.2
  */
 
+
+$special_offer_args = array(
+  'post_type' => 'page',
+  'page_id' => 102
+);
+$special_offer_query  = new Wp_Query($special_offer_args);
+
 ?>
 
 		</div><!-- #content -->
@@ -295,27 +302,27 @@
 <div class="modal fade" id="special-offer">
   <div class="modal-dialog">
     <div class="modal-content">
+    <?php if($special_offer_query->have_posts()):?>
+        <?php while($special_offer_query->have_posts()):$special_offer_query->the_post();?>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Special Offer</h4>
+        <h4 class="modal-title"><?php echo get_the_title();?></h4>
       </div>
       <div class="modal-body">
         <!-- <a href="#"> 
         <img src="images/off.jpg" alt="img">
         </a> -->
-        <h3>We reduce the price of SEO Package</h3>
-        <h2>From 22-05-17 to 30-07-17 </h2>
-        <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,<br> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage
-        </p>
+        <?php echo get_the_content();?>
       </div>
+        <?php endwhile;wp_reset_query();?>
+    <?php endif;?>
     </div>
   </div>
 </div>
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   
+      <!-- <script src="<?php //echo get_template_directory_uri();?>/assets/js/custom.js"></script> -->
       
 
       <script type="text/javascript">

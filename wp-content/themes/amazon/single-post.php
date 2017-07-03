@@ -59,22 +59,20 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
                                 <div class="col-md-6 col-sm-6">
                                     <ul>
                                         <li>
-                                        <a href="#">
-                                           <img alt="img" src="<?php echo get_template_directory_uri();?>/assets/images/58.png"> 
-                                        </a>
+                                        <?php echo get_avatar( get_the_author_meta( get_the_ID() ), 20 ); ?>
                                         </li>
                                         <li>
-                                        <a href="#">
+                                        <a href="https://www.facebook.com">
                                             <i aria-hidden="true" class="fa fa-facebook"></i>
                                         </a>
                                         </li>
                                         <li>
-                                        <a href="#">
+                                        <a href="/twitter.com">
                                             <i aria-hidden="true" class="fa fa-twitter"></i>
                                         </a>
                                         </li>
                                         <li>
-                                        <a href="#">
+                                        <a href="https://www.youtube.com">
                                             <i aria-hidden="true" class="fa fa-google-plus"></i>
                                         </a>
                                         </li>

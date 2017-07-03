@@ -33,6 +33,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
+      <?php wp_head(); ?>
    </head>
    <body>
       <header>
@@ -40,7 +41,7 @@
             <div class="row">
                <div class="col-md-2 col-sm-2">
                   <div class="logo">
-                     <a href="index.html">
+                     <a href="<?php echo site_url();?>">
                      <img src="<?php echo get_template_directory_uri();?>/assets/images/amazon-seo-help.png" alt="img">
                      </a>
                   </div>
@@ -55,16 +56,22 @@
                               <option value="3">A disabled option</option>
                               <option value="4">Potato</option>
                               </select> -->
+                             <form role="search" method="get" class="search-form" action="<?php echo home_url( '/' ); ?>">
                            <div class="submit-holder">
                               <div class="submit-main">
-                                 <input class="search-btn" type="submit" value="">
+                                 <input type="submit" class="search-submit search-btn"
+                                 value="" />
                               </div>
                            </div>
                            <div class="search-txt-holder">
                               <div class="search-txt-holder-main">
-                                 <input class="search-txt" type="text">
+                                <input type="search" class="search-field search-txt"
+                                 placeholder="<?php echo esc_attr_x( 'Search …', 'placeholder' ) ?>"
+                                 value="<?php echo get_search_query() ?>" name="s"
+                                 title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
                               </div>
                            </div>
+                           </form>
                         </div>
                      </div>
                      <div class="col-md-3 col-xs-12 col-sm-3 log-reg">
@@ -73,17 +80,17 @@
                         <div class="social-block">
                            <ul>
                               <li>
-                                 <a href="#">
+                                 <a href="https://www.facebook.com">
                                  <i class="fa fa-facebook" aria-hidden="true"></i>
                                  </a>
                               </li>
                               <li>
-                                 <a href="#">
+                                 <a href="https://twitter.com">
                                  <i class="fa fa-twitter" aria-hidden="true"></i>
                                  </a>
                               </li>
                               <li>
-                                 <a href="#">
+                                 <a href="https://www.youtube.com/">
                                  <i class="fa fa-youtube" aria-hidden="true"></i>
                                  </a>
                               </li>

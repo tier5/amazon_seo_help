@@ -10,7 +10,7 @@
  * @version 1.0
  */
 
-get_header(); ?>
+get_header();?>
 
 <div class="wrap">
 
@@ -30,13 +30,28 @@ get_header(); ?>
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/post/content', 'excerpt' );
-
+				$image = $images = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'medium');?>
+                           <div class="project-block">
+                              <div class="project-pic">
+                              <?php if($image[0]!= ''){?>
+                                 <a href="<?php echo get_permalink();?>"><img src="<?php echo ($image[0] !='') ? $image[0] : ''; ?>" alt="img"></a>
+                                 <?php }?>
+                              </div>
+                              <div class="project-info-txt">
+                                 <h2><?php echo get_the_title();?></h2>
+                                 <p>
+                                    <?php echo get_the_content();?>
+                                 </p>
+                                 <div class="project-footer">
+                                    <!-- <ul>
+                                       <li><a class="delete-project" href="<?php //echo get_permalink();?>">Read This</a></li>
+                                       <li><a class="create-project" href="#">Create template from this project</a></li>
+                                    </ul> -->
+                                 </div>
+                              </div>
+                              <div class="clearfix"></div>
+                           </div>
+                           <?php
 			endwhile; // End of the loop.
 
 			the_posts_pagination( array(
@@ -56,7 +71,7 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-	<?php get_sidebar(); ?>
+	<?php //get_sidebar(); ?>
 </div><!-- .wrap -->
 
 <?php get_footer();

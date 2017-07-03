@@ -10,7 +10,9 @@
  * @version 1.0
  */
 
-get_header(); ?>
+get_header();
+
+?>
 
 <div class="wrap">
 	<div id="primary" class="content-area">
@@ -19,6 +21,7 @@ get_header(); ?>
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
+			wpb_set_template_views(get_the_ID());
 			$image = $images = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'full');
 			?>
 			<h2><?php echo get_the_title();?></h2>

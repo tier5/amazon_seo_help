@@ -92,14 +92,6 @@ $team_query = new WP_Query($team_args);
 
       </div>
 
-         <div class="bottom-part">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12 col-sm-12">
-                     <a href="#">Blog Posts</a>
-                  </div>
-               </div>
-            </div>
-         </div>
+         <?php echo get_template_part('template/site','bottom');?>
       </div>
 <?php get_footer();?>

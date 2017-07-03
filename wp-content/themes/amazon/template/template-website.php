@@ -4,21 +4,54 @@
 */
 get_header();
 $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
-$template_args = array(
-   'post_type' => 'template',
-   'posts_per_page' => 6,
-   'paged' => $paged
-);
+
+if(isset($_GET['viewby']) && $_GET['viewby'] == 'now'){
+      $template_args = array(
+      'post_type' => 'template',
+      'posts_per_page' => -1
+
+    );
+    }else if(isset($_GET['viewby']) && $_GET['viewby'] == 'popular'){
+      $template_args = array(
+            'post_type' => 'template',
+            'posts_per_page' => 6,
+            'meta_key' => 'wpb_template_views_count',
+            'orderby' => 'meta_value_num',
+            'order' => 'DESC'
+
+          );
+    }else if(isset($_GET['cat']) && $_GET['cat'] !=''){
+        $template_args = array(
+       'post_type' => 'template',
+       'posts_per_page' => 6,
+       'paged' => $paged,
+       'tax_query' => array(
+              array(
+                    'taxonomy' => 'template-category',
+                    'field'    => 'term_id',
+                    'terms'    => $_GET['cat'],
+                    ),
+          )
+
+      );
+    }else{
+      $template_args = array(
+         'post_type' => 'template',
+         'posts_per_page' => 6,
+         'paged' => $paged
+      );
+    }
 
 $template_query = new WP_Query($template_args);
 
 $args = array(
     'orderby'           => 'name', 
     'order'             => 'ASC',
-    'hide_empty'        => false, 
+    'hide_empty'        => true, 
 ); 
 
 $terms = get_terms('template-category', $args);
+
 ?>
 <div class="bodypart no-padding">
          <div class="container">
@@ -34,8 +67,8 @@ $terms = get_terms('template-category', $args);
                      <div class="menu-list">
                         <h3>View by</h3>
                         <ul>
-                           <li><a href="#">New!</a></li>
-                           <li><a href="#">Most Popular</a></li>
+                           <li><a class="view-by-click" data-type="new" href="<?php echo site_url();?>/template-website?viewby=new">New!</a></li>
+                           <li><a class="view-by-click" data-type="popular" href="<?php echo site_url();?>/template-website?viewby=popular">Most Popular</a></li>
                         </ul>
                      </div>
                      <div class="category-menu">
@@ -44,7 +77,7 @@ $terms = get_terms('template-category', $args);
                         <?php if(is_array($terms) && count($terms) > 0){?>
                         <ul>
                            <?php foreach($terms as $term):?>
-                           <li><a class="template-cat-click" data-id="<?php echo $term->term_id;?>" href="javascript:void(0);"><?php echo $term->name;?></a></li>
+                           <li><a class="template-cat-click" data-id="<?php echo $term->term_id;?>" href="<?php echo site_url();?>/template-website?cat=<?php echo $term->term_id;?>"><?php echo $term->name;?></a></li>
                            <?php endforeach;?>
                         </ul>
                      <?php }?>
@@ -55,10 +88,11 @@ $terms = get_terms('template-category', $args);
                   <div class="rht-part">
                      <h1>Pick the website template you love</h1>
                      <div class="right-content">
+                     <img class="loader-img" src="<?php echo get_template_directory_uri().'/assets/images/ajaxLoader.gif';?>" style="display: none;">
                     <?php if($template_query->have_posts()): $count = 1;?>
 
                         <?php while($template_query->have_posts()):$template_query->the_post();?>
-                           <?php $templatemages = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'full');?>
+                           <?php $templatemages = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'medium');?>
                      
                             <?php if ($count%2 == 1)
                             {  
@@ -85,7 +119,7 @@ $terms = get_terms('template-category', $args);
                                     <div class="clearfix"></div>
                                  </div>
                               </div>
-                              Lorem ipsum dels
+                               <?php echo get_the_title();?>
                            </div>
                            </div>
                            <?php
@@ -132,21 +166,14 @@ $terms = get_terms('template-category', $args);
                            </div>
                         </div>
                      </div>
-
+                   <?php else: ?>
+                    <p>Sorry No Results Found!!!</p>
                   <?php endif;?>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-         <div class="bottom-part">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12 col-sm-12">
-                     <a href="#">Blog Posts</a>
-                  </div>
-               </div>
-            </div>
-         </div>
+         <?php echo get_template_part('template/site','bottom');?>
       </div>
 <?php get_footer();?>

@@ -32,7 +32,7 @@ $project_query = new WP_Query($project_args);
 
                   <?php if($project_query->have_posts()):?>
                      <?php while($project_query->have_posts()):$project_query->the_post();?>
-                           <?php $image = $images = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'full');?>
+                           <?php $image = $images = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'medium');?>
                            <div class="project-block">
                               <div class="project-pic">
                                  <a href="<?php echo get_permalink();?>"><img src="<?php echo ($image[0] !='') ? $image[0] : ''; ?>" alt="img"></a>
@@ -44,8 +44,8 @@ $project_query = new WP_Query($project_args);
                                  </p>
                                  <div class="project-footer">
                                     <ul>
-                                       <li><a class="delete-project" href="#">Delete this</a></li>
-                                       <li><a class="create-project" href="#">Create template from this project</a></li>
+                                       <li><a class="delete-project" href="<?php echo get_permalink();?>">Read This</a></li>
+                                      <!--  <li><a class="create-project" href="#">Create template from this project</a></li> -->
                                     </ul>
                                  </div>
                               </div>
@@ -59,14 +59,6 @@ $project_query = new WP_Query($project_args);
                </div>
             </div>
          </div>
-         <div class="bottom-part">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12 col-sm-12">
-                     <a href="#">Blog Posts</a>
-                  </div>
-               </div>
-            </div>
-         </div>
+          <?php echo get_template_part('template/site','bottom');?>
       </div>
 <?php get_footer();?>

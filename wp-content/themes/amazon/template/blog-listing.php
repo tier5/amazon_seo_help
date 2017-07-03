@@ -4,25 +4,57 @@
 */
 get_header();
 
-$blog_args = array(
+if(isset($_GET['cat']) && $_GET['cat']!=''){
+    $blog_args = array(
+
+      'post_type' => 'post',
+      'posts_per_page' => -1,
+      'tax_query' => array(
+              array(
+                    'taxonomy' => 'category',
+                    'field'    => 'term_id',
+                    'terms'    => $_GET['cat'],
+                    ),
+          )
+
+    );
+}else if(isset($_GET['tag']) && $_GET['tag']!=''){
+
+  $blog_args = array(
+
+      'post_type' => 'post',
+      'posts_per_page' => -1,
+      'tax_query' => array(
+              array(
+                    'taxonomy' => 'post_tag',
+                    'field'    => 'term_id',
+                    'terms'    => $_GET['tag'],
+                    ),
+          )
+
+    );
+
+}else{
+    $blog_args = array(
 
       'post_type' => 'post',
       'posts_per_page' => -1
 
-);
+    );
+}
 
 $blog_query = new WP_Query($blog_args);
 
 $args = array(
     'orderby'           => 'name', 
     'order'             => 'ASC',
-    'hide_empty'        => false, 
+    'hide_empty'        => true, 
 ); 
 
 $terms = get_terms('category', $args);
 
 $tags = get_tags(array(
-  'hide_empty' => false
+  'hide_empty' => true
 ));
 
 $args = array(
@@ -89,7 +121,7 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
                         </ol>
                      </div>
                   </div>
-               
+                
                <?php endif;?>
 
 
@@ -97,7 +129,7 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
 
                   <?php if($blog_query->have_posts()): $count = 1;?>
                         <?php while($blog_query->have_posts()):$blog_query->the_post();?>
-                           <?php $blogimages = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'full');?>
+                           <?php $blogimages = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'medium');?>
                             <?php if ($count%2 == 1)
                             {  
                                  echo "<div class='row'>";
@@ -119,22 +151,20 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
                                 <div class="col-md-6 col-sm-6">
                                     <ul>
                                         <li>
-                                        <a href="#">
-                                           <img src="<?php echo get_template_directory_uri();?>/assets/images/58.png" alt="img"> 
-                                        </a>
+                                        <?php echo get_avatar( get_the_author_meta( get_the_ID() ), 20 ); ?>
                                         </li>
                                         <li>
-                                        <a href="#">
+                                        <a href="https://www.facebook.com">
                                             <i class="fa fa-facebook" aria-hidden="true"></i>
                                         </a>
                                         </li>
                                         <li>
-                                        <a href="#">
+                                        <a href="https://twitter.com">
                                             <i class="fa fa-twitter" aria-hidden="true"></i>
                                         </a>
                                         </li>
                                         <li>
-                                        <a href="#">
+                                        <a href="https://www.youtube.com">
                                             <i class="fa fa-google-plus" aria-hidden="true"></i>
                                         </a>
                                         </li>
@@ -159,6 +189,8 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
                         ?>
                         <?php $count++ ; endwhile;wp_reset_query();?>
                         <?php if ($count%2 != 1) echo "</div>";?>
+                      <?php else:?>
+                        <p>Sorry No Results Found!!!</p>
                   <?php endif;?>
 
                   </div>  
@@ -171,7 +203,7 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
                             <ul>
                             <?php foreach($terms as $term):?>
                                 <li>
-                                    <a href="#"><?php echo $term->name;?></a>
+                                    <a href="<?php echo site_url();?>/blog-listing?cat=<?php echo $term->term_id;?>"><?php echo $term->name;?></a>
                                 </li>
                                 
                              <?php endforeach;?>
@@ -184,7 +216,7 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
                            <?php if(is_array($recent_posts) && count($recent_posts) > 0){?>
                              <ul>   
                              <?php foreach($recent_posts as $recent):?>
-                                <?php $recentmages = wp_get_attachment_image_src( get_post_thumbnail_id($recent["ID"]),'full');?>
+                                <?php $recentmages = wp_get_attachment_image_src( get_post_thumbnail_id($recent["ID"]));?>
                                 <li>
                                     <a href="<?php echo get_permalink($recent["ID"]);?>">
                                     <span><img src="<?php echo($recentmages[0]!= '') ? $recentmages[0] : '';?>" alt="img"></span>
@@ -201,9 +233,11 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
                          </div>
                          <h2>Tags</h2>
                         <div class="right-main tags">
-                        <?php if(is_array($tags) && count($tags) > 0){?>
+                        <?php if(is_array($tags) && count($tags) > 0){
+
+                          ?>
                            <?php foreach($tags as $tag):?>
-                            <a href="#"><?php echo $tag->name;?></a> 
+                            <a href="<?php echo site_url();?>/blog-listing?tag=<?php echo $tag->term_id;?>"><?php echo $tag->name;?></a> 
                             <?php endforeach;?>
                         <?php } ?>
                         </div>
