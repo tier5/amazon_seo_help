@@ -4,11 +4,13 @@
 */
 get_header();
 
+$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 if(isset($_GET['cat']) && $_GET['cat']!=''){
     $blog_args = array(
 
       'post_type' => 'post',
-      'posts_per_page' => -1,
+      'posts_per_page' => 6,
+      'paged' => $paged,
       'tax_query' => array(
               array(
                     'taxonomy' => 'category',
@@ -23,7 +25,8 @@ if(isset($_GET['cat']) && $_GET['cat']!=''){
   $blog_args = array(
 
       'post_type' => 'post',
-      'posts_per_page' => -1,
+      'posts_per_page' => 6,
+      'paged' => $paged,
       'tax_query' => array(
               array(
                     'taxonomy' => 'post_tag',
@@ -38,7 +41,8 @@ if(isset($_GET['cat']) && $_GET['cat']!=''){
     $blog_args = array(
 
       'post_type' => 'post',
-      'posts_per_page' => -1
+      'posts_per_page' => 6,
+      'paged' => $paged,
 
     );
 }
@@ -66,6 +70,7 @@ $args = array(
 
 $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
 
+$count = $blog_query->post_count;
 ?>
 
 <div class="bodypart">
@@ -114,10 +119,17 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
                         <span class="sr-only">Next</span>
                         </a>
                         <ol class="carousel-indicators">
-                           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                           <li data-target="#myCarousel" data-slide-to="1"></li>
-                           <li data-target="#myCarousel" data-slide-to="2"></li>
-                           <li data-target="#myCarousel" data-slide-to="3"></li>
+                          <?php 
+                          for($j=0;$j<$count;$j++):
+                            if($j == 0){
+                              $dotClass = 'active';
+                            }else{
+                              $dotClass = '';
+                            }
+                          ?>
+                           <li data-target="#myCarousel" data-slide-to="<?php echo $j;?>" class="<?php echo $dotClass;?>"></li>
+                           
+                         <?php endfor;?>
                         </ol>
                      </div>
                   </div>
@@ -189,6 +201,39 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
                         ?>
                         <?php $count++ ; endwhile;wp_reset_query();?>
                         <?php if ($count%2 != 1) echo "</div>";?>
+                        <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                           <div class="pagination">
+                              <!-- <ul>
+                                 <li><a href="#"> <img src="<?php echo get_template_directory_uri();?>/assets/images/lft-pag.jpg" alt="img"> </a></li>
+                                 <li><a href="#">1</a></li>
+                                 <li><a href="#">2</a></li>
+                                 <li><a href="#">3</a></li>
+                                 <li><a href="#">4</a></li>
+                                 <li><a href="#">5</a></li>
+                                 <li><a href="#">5</a></li>
+                                 <li><a href="#"> 
+                                    <img src="<?php echo get_template_directory_uri();?>/assets/images/rht-pag.jpg" alt="img">
+                                    </a>
+                                 </li>
+                              </ul> -->
+
+                              <?php
+                              $big = 999999999; // need an unlikely integer
+                              $left_img = '<img src='.get_template_directory_uri().'/assets/images/lft-pag.jpg>';
+                              $right_img = '<img src='. get_template_directory_uri().'/assets/images/rht-pag.jpg>';
+                              echo paginate_links( array(
+                                 'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                                 'format' => '?paged=%#%',
+                                 'current' => max( 1, get_query_var('paged') ),
+                                 'total' => $blog_query->max_num_pages,
+                                 'prev_text'          => __($left_img),
+                                 'next_text'          => __($right_img),
+                              ) );
+                              ?>
+                           </div>
+                        </div>
+                     </div>
                       <?php else:?>
                         <p>Sorry No Results Found!!!</p>
                   <?php endif;?>

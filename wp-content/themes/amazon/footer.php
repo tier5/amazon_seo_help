@@ -86,7 +86,7 @@ $special_offer_query  = new Wp_Query($special_offer_args);
             <div class="row">
                <div class="col-md-12 col-sm-12">
                   <hr>
-                  Copyright © 2017 Amazon Optimization, All Rights Reserved.
+                  Copyright © <?php echo date("Y");?> Amazon Optimization, All Rights Reserved.
                </div>
             </div>
          </div>

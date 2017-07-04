@@ -4,9 +4,11 @@
 */
 get_header();
 
+$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 $project_args = array(
    'post_type' => 'project',
-   'posts_per_page' => -1
+   'posts_per_page' => 6,
+   'paged' => $paged
 );
 
 $project_query = new WP_Query($project_args);
@@ -52,6 +54,39 @@ $project_query = new WP_Query($project_args);
                               <div class="clearfix"></div>
                            </div>
                      <?php endwhile;wp_reset_query();?>
+                     <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                           <div class="pagination">
+                              <!-- <ul>
+                                 <li><a href="#"> <img src="<?php echo get_template_directory_uri();?>/assets/images/lft-pag.jpg" alt="img"> </a></li>
+                                 <li><a href="#">1</a></li>
+                                 <li><a href="#">2</a></li>
+                                 <li><a href="#">3</a></li>
+                                 <li><a href="#">4</a></li>
+                                 <li><a href="#">5</a></li>
+                                 <li><a href="#">5</a></li>
+                                 <li><a href="#"> 
+                                    <img src="<?php echo get_template_directory_uri();?>/assets/images/rht-pag.jpg" alt="img">
+                                    </a>
+                                 </li>
+                              </ul> -->
+
+                              <?php
+                              $big = 999999999; // need an unlikely integer
+                              $left_img = '<img src='.get_template_directory_uri().'/assets/images/lft-pag.jpg>';
+                              $right_img = '<img src='. get_template_directory_uri().'/assets/images/rht-pag.jpg>';
+                              echo paginate_links( array(
+                                 'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                                 'format' => '?paged=%#%',
+                                 'current' => max( 1, get_query_var('paged') ),
+                                 'total' => $project_query->max_num_pages,
+                                 'prev_text'          => __($left_img),
+                                 'next_text'          => __($right_img),
+                              ) );
+                              ?>
+                           </div>
+                        </div>
+                     </div>
                   <?php endif;?>
                   
 

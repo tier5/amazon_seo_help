@@ -8,7 +8,8 @@ $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 if(isset($_GET['viewby']) && $_GET['viewby'] == 'now'){
       $template_args = array(
       'post_type' => 'template',
-      'posts_per_page' => -1
+      'posts_per_page' => 6,
+      'paged' => $paged,
 
     );
     }else if(isset($_GET['viewby']) && $_GET['viewby'] == 'popular'){
@@ -17,7 +18,8 @@ if(isset($_GET['viewby']) && $_GET['viewby'] == 'now'){
             'posts_per_page' => 6,
             'meta_key' => 'wpb_template_views_count',
             'orderby' => 'meta_value_num',
-            'order' => 'DESC'
+            'order' => 'DESC',
+            'paged' => $paged,
 
           );
     }else if(isset($_GET['cat']) && $_GET['cat'] !=''){
