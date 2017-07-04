@@ -1,0 +1,209 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\User;
+use Auth;
+use File;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+
+class UserController extends BaseController
+{
+	
+	public function userDetails(Request $request){
+
+		$user = User::all();
+		echo '<pre>';
+		print_r($user);
+		die;
+
+
+		foreach ($user as $result) 
+			{
+				$employee[] = array(
+						'0'       => $result['employee_name'],
+						'1'     => $result['employee_salary'],
+						'2'        => $result['employee_age'],
+					);
+			}
+			//echo 'uuu';
+			//print_r($employee);
+			//die;
+			if($requestData['search']['value'])
+				$totalFiltered = count($employee);
+			else
+				$totalFiltered = 57;
+			$totalData = 57;
+			$json_data = array(
+			"draw"            => intval( $requestData['draw'] ),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw. 
+			"recordsTotal"    => intval( $totalData ),  // total number of records
+			"recordsFiltered" => intval( $totalFiltered ), // total number of records after searching, if there is no searching then totalFiltered = totalData
+			"data"            => $employee   // total data array
+			);
+
+		echo json_encode($json_data);
+
+	}
+
+	public function login()
+	{
+	   $username = Input::get('email');
+	   $password = Input::get('password');
+
+	   $data = Input::all();
+	    // Applying validation rules.
+	    $rules = array(
+			'email' => 'required|email',
+			'password' => 'required|min:5',
+		     );
+
+	    $validator = Validator::make($data, $rules);
+	    
+	    if ($validator->fails()){
+	      // If validation falis redirect back to login.
+	      return response()->json(['errors'=>$validator->errors()]);
+	      echo 9956; die;	
+	      //return Redirect::to('/')->withInput(Input::except('password'))->withErrors(Input::except('password'));
+	      return Redirect::back()->withErrors($validator);
+	    }
+	    else{
+	    		//echo 6578; die;
+				
+				$userdata = array(
+					'email' => Input::get('email') ,
+					'password' => Input::get('password')
+				);
+ 
+				// attempt to do the login
+ 
+				if (Auth::attempt($userdata))
+				{
+					//echo 9999; 
+					// validation successful
+					// do whatever you want on success
+					//return Redirect::to('admin/dashboard');
+					//return view('admin/dashboard');
+					//return redirect('dashboard');
+					//exit;
+					//return redirect('admin/dashboard');
+					//return route('dashboard');
+					
+				}
+			  else
+				{
+
+				// validation not successful, send back to form
+					//$message = (!$message ? $message = 'Invalid email and password');
+		            return response()->json(array(
+		                    'message'   =>  'Invalid email and password'
+		                ));        
+				//return Redirect::to('/');
+				}
+		}    
+	}
+	public function userRegistration(Request $request)
+	{
+		$data = Input::all();
+		//dd($data);
+		//die;
+		$validator = Validator::make($request->all(), [
+			'firstname' => 'required',
+			'lastname' => 'required',
+		    'username' => 'required|min:10|max:64|unique:users',
+		    'email' => 'required|unique:users|email|min:8',
+		    'password' => 'required|min:3|confirmed',
+       		'password_confirmation' => 'required|min:3'
+		],
+		[
+		    'email.required' => 'Email is required',
+		    'username.unique' => 'Username is taken'
+		]);
+
+		if ($validator->fails()) {
+			$errors = $validator->errors();
+			//dd($errors);
+		    //echo 999; die;	
+		    return redirect()->route('/register')
+		        ->withErrors($validator)
+		        ->withInput();
+		}
+		else{
+
+			$user = User::create(['firstname' => $data['firstname'],'lastname' => $data['lastname'],'userName' => $data['username'],'email' => $data['email'],
+						  'password' => bcrypt($data['password'])]);
+
+			// Insert wordpress user table also
+
+			$userdata = array(
+			    'user_login'  =>  $data['email'],
+			    'user_email'  =>  $data['email'],
+			    'user_pass'   =>  $data['password']
+			);
+
+			$user_id = wp_insert_user( $userdata ) ;
+			update_user_meta($user_id,'laravel_user',$user->id);
+			return view('admin/dashboard');
+		}
+		
+	}
+
+	public function profileupdate(UserController $request){
+		$data = Input::all();
+		$id = $data['id'];
+
+        
+		$user = User::findOrFail($id);
+		if(!empty($data['imageupload'])){
+			//$filename2 = $data['imageupload'];
+			//File::delete($filename2);
+			//echo $user->profilePicture;
+			//die;
+			$file = $data['imageupload'];
+			$filename2 = $file->getClientOriginalName();
+			//dd($user->profilePicture);
+			//echo $filename2;
+			File::delete(public_path().'/imageupload/'.$user->profilePicture);
+    		//die;
+			
+	    	$imgname = time().$file->getClientOriginalName();
+	    	$file->move(public_path().'/imageupload/', $imgname);
+       		$user->profilePicture = $imgname;
+       	}	
+	    $user->firstname = $data['firstname'];
+    	$user->lastname = $data['lastname'];
+    	$user->email = $data['email'];
+    	
+    	$user->id = $data['id'];
+    	/*echo public_path(public_path().'/imageupload/');
+    	echo '<pre>';
+    	print_r($user);
+    	echo '</pre>';
+    	die;*/
+    	
+    	
+    	$user->save();
+   		//return \Redirect::route('/profile', [$user->id])->with('message', 'User has been updated!');
+   		return redirect()->route('/profile')->with('message', 'Records updated successfully');
+
+	}
+
+	public function passwordupdate(){
+
+		$data = Input::all();
+		$id = $data['editid'];
+		
+     	$user = User::findOrFail($id);
+     	$user->password = bcrypt($data['password2']);
+    	$user->save();
+   		//return \Redirect::route('/profile', [$user->id])->with('message', 'User has been updated!');
+   		return redirect()->route('/profile')->with('message', 'Password updated successfully');
+
+	}
+}	
