@@ -20,3 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('amazonseo',array('as'=>'/amazonseo',function() {
             return view('admin/profile');
 }));
+
+Route::post('/login','UserController@login');
+Route::get('dashboard',array('as'=>'/dashboard',function() {
+return view('admin/dashboard');
+}));

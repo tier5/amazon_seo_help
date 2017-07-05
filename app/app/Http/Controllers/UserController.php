@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\User;
 use Auth;
@@ -13,57 +12,77 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-
 class UserController extends BaseController
 {
 	
 	public function userDetails(Request $request){
-
-		$user = User::all();
-		echo '<pre>';
+		//$user = User::all();
+		/*echo '<pre>';
 		print_r($user);
-		die;
-
-
-		foreach ($user as $result) 
-			{
+		die;*/
+		$requestData = Input::all();
+		/*echo '<pre>';
+		print_r($requestData);
+		die;*/
+		$columns = array( 
+			// datatable column index  => database column name
+				0=>'firstname', 
+				1=>'lastname',
+				2=> 'email',
+				3=> 'role',
+				4=> 'userName'
+			);
+		
+			if($requestData['search']['value']){
+			    $queryString = $requestData['search']['value']; 
+			    
+				$data = User::where('firstname', 'LIKE', "%$queryString%")
+				         ->orWhere('lastname', 'LIKE', "%$queryString%")
+				         ->orWhere('email', 'LIKE', "%$queryString%")
+				         ->orWhere('role', 'LIKE', "%$queryString%")
+				         ->orWhere('username', 'LIKE', "%$queryString%")
+				         ->orderBy('firstname')->paginate(5);
+			}else{
+				$data = User::where('id', '!=', 1)->get();
+			}
+			$employee = array();			
+			foreach ($data as $result) 
+			{   
 				$employee[] = array(
-						'0'       => $result['employee_name'],
-						'1'     => $result['employee_salary'],
-						'2'        => $result['employee_age'],
+						'0'       => "<a href=". route('/userdtls', $result['id']).">".$result['firstname']."</a>",
+						'1'       => $result['lastname'],
+						'2'       => $result['email'],
+						'3'       => $result['role'],
+						'4'       => $result['userName']
 					);
 			}
-			//echo 'uuu';
-			//print_r($employee);
-			//die;
+						
+			//$totalFiltered = count($employee);
+			$totalData = count($employee);
 			if($requestData['search']['value'])
 				$totalFiltered = count($employee);
 			else
-				$totalFiltered = 57;
-			$totalData = 57;
+				$totalFiltered = count($employee);
+			//echo $totalData;
+			//die;
 			$json_data = array(
 			"draw"            => intval( $requestData['draw'] ),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw. 
 			"recordsTotal"    => intval( $totalData ),  // total number of records
 			"recordsFiltered" => intval( $totalFiltered ), // total number of records after searching, if there is no searching then totalFiltered = totalData
 			"data"            => $employee   // total data array
 			);
-
 		echo json_encode($json_data);
-
 	}
-
 	public function login()
 	{
 	   $username = Input::get('email');
 	   $password = Input::get('password');
-
 	   $data = Input::all();
 	    // Applying validation rules.
 	    $rules = array(
 			'email' => 'required|email',
 			'password' => 'required|min:5',
 		     );
-
 	    $validator = Validator::make($data, $rules);
 	    
 	    if ($validator->fails()){
@@ -94,11 +113,16 @@ class UserController extends BaseController
 					//exit;
 					//return redirect('admin/dashboard');
 					//return route('dashboard');
+
+					$creds = array();
+					$creds['user_login'] = Input::get('email');
+					$creds['user_password'] = Input::get('password');
+					$creds['remember'] = true;
+					$user = wp_signon( $creds, false );
 					
 				}
 			  else
 				{
-
 				// validation not successful, send back to form
 					//$message = (!$message ? $message = 'Invalid email and password');
 		            return response()->json(array(
@@ -125,7 +149,6 @@ class UserController extends BaseController
 		    'email.required' => 'Email is required',
 		    'username.unique' => 'Username is taken'
 		]);
-
 		if ($validator->fails()) {
 			$errors = $validator->errors();
 			//dd($errors);
@@ -135,29 +158,15 @@ class UserController extends BaseController
 		        ->withInput();
 		}
 		else{
-
-			$user = User::create(['firstname' => $data['firstname'],'lastname' => $data['lastname'],'userName' => $data['username'],'email' => $data['email'],
+			User::create(['firstname' => $data['firstname'],'lastname' => $data['lastname'],'userName' => $data['username'],'email' => $data['email'],
 						  'password' => bcrypt($data['password'])]);
-
-			// Insert wordpress user table also
-
-			$userdata = array(
-			    'user_login'  =>  $data['email'],
-			    'user_email'  =>  $data['email'],
-			    'user_pass'   =>  $data['password']
-			);
-
-			$user_id = wp_insert_user( $userdata ) ;
-			update_user_meta($user_id,'laravel_user',$user->id);
 			return view('admin/dashboard');
 		}
 		
 	}
-
 	public function profileupdate(UserController $request){
 		$data = Input::all();
 		$id = $data['id'];
-
         
 		$user = User::findOrFail($id);
 		if(!empty($data['imageupload'])){
@@ -191,11 +200,8 @@ class UserController extends BaseController
     	$user->save();
    		//return \Redirect::route('/profile', [$user->id])->with('message', 'User has been updated!');
    		return redirect()->route('/profile')->with('message', 'Records updated successfully');
-
 	}
-
 	public function passwordupdate(){
-
 		$data = Input::all();
 		$id = $data['editid'];
 		
@@ -204,6 +210,5 @@ class UserController extends BaseController
     	$user->save();
    		//return \Redirect::route('/profile', [$user->id])->with('message', 'User has been updated!');
    		return redirect()->route('/profile')->with('message', 'Password updated successfully');
-
 	}
 }	

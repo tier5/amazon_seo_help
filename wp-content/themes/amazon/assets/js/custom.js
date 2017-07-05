@@ -54,4 +54,24 @@ jQuery(document).ready(function($){
         },'json');
 
 	});
+
+    $("#sign-in").click(function() {
+              //alert( "Handler for .click() called." );
+              var email = $("#email").val();
+              var password = $("#password").val();
+              var token = $("#token").val();
+              $.post('http://localhost/amazonseo/app/public/api/login', { email: email, password: password, _token: token}, function(result){
+                      //alert(JSON.stringify(result));
+                      //alert(result.message);
+                      if(result.errors == undefined && result.message == undefined){
+                        window.location="http://localhost/amazonseo/app/public/api/dashboard";
+                      }else{  
+                            $('.error_msg').html(result.message);
+                            $('.error_email').html(result.errors.email);
+                            $('.error_pass').html(result.errors.password);
+                      }
+
+                      //console.log(result);
+                  });
+            });
 });

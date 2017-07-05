@@ -217,14 +217,14 @@ function special_nav_class ($classes, $item) {
 }
 
 
-/*function add_custom_scripts() {	
+function add_custom_scripts() {	
 	wp_register_script( 'custom-script', get_template_directory_uri() . '/assets/js/custom.js', array( 'jquery' ));
  	wp_enqueue_script( 'custom-script');
  	wp_localize_script( 'custom-script', 'Front',
             array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
  
 }
-add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );*/
+add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
 
 
 

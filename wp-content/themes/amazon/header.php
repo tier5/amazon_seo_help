@@ -75,8 +75,12 @@
                         </div>
                      </div>
                      <div class="col-md-3 col-xs-12 col-sm-3 log-reg">
-                        <a href="#" data-toggle="modal" data-target="#myModal">Login</a> I 
-                        <a href="#" data-toggle="modal" data-target="#signupModal">Register</a>
+                     <?php if(!is_user_logged_in()){?>
+                        <a href="#" data-toggle="modal" data-target="#myModal">Login</a>
+                     <?php }else{?>
+                        <a href="<?php echo wp_logout_url(site_url()); ?>" >Logout</a>
+                     <?php }?>
+                        <!-- <a href="#" data-toggle="modal" data-target="#signupModal">Register</a> -->
                         <div class="social-block">
                            <ul>
                               <li>

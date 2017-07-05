@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,16 +9,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    
     return view('index');
 });
-
 Route::get('dashboard', function () {
     return view('admin/dashboard');
 });
-
 /*Route::get('user', function () {
     return view('admin/user');
 });*/
@@ -30,7 +25,6 @@ Route::get('userpanel', function () {
     return view('admin/userpanel');
 });*/
 Route::get('dashboard',array('as'=>'/dashboard',function() {
-            dd(get_template_directory_uri());
             return view('admin/dashboard');
 }));
 Route::get('user',array('as'=>'/user',function() {
@@ -45,9 +39,6 @@ Route::get('userpanel',array('as'=>'/userpanel',function() {
 Route::get('profile',array('as'=>'/profile',function() {
             return view('admin/profile');
 }));
-
-
-
 /*Route::get('profileupdate',array('as'=>'/profileupdate',function() {
             return view('admin/profileupdate');
 }));*/
@@ -62,7 +53,11 @@ Route::post('passwordupdate',[
 /*Route::post('dashboard',array('as'=>'/dashboard',function() {
             return view('admin/dashboard');
 }));*/
-
+//Route::post('/userdtls/{id}','UserController@userdtls');
+Route::post('/userdtls/{id}',[
+    'uses' => 'UserController@userdtls',
+    'as' => '/userdtls'
+]);
 Route::post('/login','UserController@login');
 Route::post('/users','UserController@userDetails');
 /*Route::post('/login', function () {
@@ -81,7 +76,6 @@ Route::post('userregistration',[
     'uses' => 'UserController@userRegistration',
     'as' => '/userregistration'
 ]);
-
 /*Route::get('/amazonppc', function () {
     return view('amazonppc');
 });*/

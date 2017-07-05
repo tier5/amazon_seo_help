@@ -7,7 +7,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo asset('../admin/css/bootstrap.min.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('admin/css/bootstrap.min.css')?>" type="text/css"> 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -16,10 +16,10 @@
 <!--   <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css"> -->
   <!-- Theme style -->
   
-  <link rel="stylesheet" href="<?php echo asset('../admin/css/AdminLTE.min.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('../admin/css/all.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('../admin/css/fullcalendar.min.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('../admin/css/fullcalendar.print.min.css')?>" type="text/css" media='print'> 
+  <link rel="stylesheet" href="<?php echo asset('admin/css/AdminLTE.min.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('admin/css/all.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.min.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.print.min.css')?>" type="text/css" media='print'> 
       
 
 
@@ -34,8 +34,8 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="<?php echo asset('../admin/css/animate.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('../admin/css/style.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('admin/css/animate.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('admin/css/style.css')?>" type="text/css"> 
    
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
@@ -63,8 +63,8 @@
     </script>   
 
 
-<link rel="stylesheet" href="<?php echo asset('../admin/css/fullcalendar.min.css')?>" type="text/css"> 
-<link rel="stylesheet" href="<?php echo asset('../admin/css/fullcalendar.print.min.css')?>" media='print' type="text/css"> 
+<link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.min.css')?>" type="text/css"> 
+<link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.print.min.css')?>" media='print' type="text/css"> 
 </head>
 <?php /*print_r(Auth::user()); if(Auth::user()->role == "admin")
         echo 8888;
@@ -78,9 +78,9 @@
   <header class="main-header">
       <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src="../admin/images/amazon-seo.png" alt="img"></span>
+      <span class="logo-mini"><img src="<?php echo asset('admin/images/amazon-seo.png');?>" alt="img"></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img src="../admin/images/amazon-seo.png" alt="img"></span>
+      <span class="logo-lg"><img src="<?php echo asset('admin/images/amazon-seo.png');?>" alt="img"></span>
     </a>
 
 

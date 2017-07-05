@@ -1,4 +1,4 @@
- @include('admin/header')
+@include('admin/header')
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -75,7 +75,7 @@
            <div class="box-content">
               <div class="user-head">
                   <div class="row">
-                      <div class="col-md-2 col-md-2">
+                      <!-- <div class="col-md-2 col-md-2">
                         
                         <a class="btn btn-flat" href="{{ route('/userdetails') }}">User Details</a>
                       </div>
@@ -86,7 +86,7 @@
                       </div>
                       <div class="col-md-5 col-md-5">
                           <input placeholder="Enter name or email" class="form-control" type="text" name="">
-                      </div>
+                      </div> -->
                       <div class="col-md-2 col-md-2">
                         <button class="btn btn-default">Add New User</button>
                       </div>
@@ -98,14 +98,14 @@
                   <table id="employee-grid" class="table" cellpadding="0" cellspacing="0" border="0">
                       <thead>
                         <tr>
-                          <th>Email</th>
-                          <th>Name</th>
-                          <th>Status</th>
+                          <th>firstname</th>
+                          <th>lastname</th>
+                          <th>email</th>
                           <th>Role</th>
-                          <th>Reset Password</th>
-                          <th>Manage</th>
+                          <th>username</th>
+                          <!-- <th>Manage</th>
                           <th>Subscribe From</th>
-                          <th>Subscribe to</th>
+                          <th>Subscribe to</th> -->
                         </tr> 
                       </thead> 
                       <!--<tr>

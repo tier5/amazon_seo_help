@@ -223,12 +223,17 @@ $special_offer_query  = new Wp_Query($special_offer_args);
                   <p>Welcome back, please login to your account</p>
                </div>
                <div class="modal-body log-modal-body">
-                  <form>
+                  <div class="error_msg" style="color:red;padding-left: 188px;"></div>
+                  <form method="post" >
+
                      <div class="form-group">
-                        <input class="form-control" type="text" placeholder="Username"> 
+                        <input id="email" name="email" class="form-control" type="text" placeholder="Username"> 
+                        <div class="error_email" style="color:red;padding-left: 77px;"></div>
                      </div>
+                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                      <div class="form-group">
-                        <input class="form-control" type="text" placeholder="Password"> 
+                        <input name="password" id="password" class="form-control" type="password" placeholder="Password"> 
+                        <div class="error_pass" style="color:red;padding-left: 77px;"></div>
                      </div>
                      <div class="form-group">
                         <div class="checkbox pull-left">
@@ -244,17 +249,17 @@ $special_offer_query  = new Wp_Query($special_offer_args);
                         <div class="clearfix"></div>
                      </div>
                      <div class="form-group">
-                        <input class="sign-in" value="Sign in" type="submit" >
+                        <input class="sign-in" id="sign-in" value="Sign in" type="button" >
                      </div>
                   </form>
-                  <div class="modal-footer-common">
+                  <!-- <div class="modal-footer-common">
                      <span>
                      <a href="#">Dont have an account?</a>
                      </span>
                      <span>
                      <a class="btn signup-btn" data-target="#signupModal" data-toggle="modal" href="#">Sign Up</a>
                      </span>
-                  </div>
+                  </div> -->
                </div>
             </div>
          </div>
