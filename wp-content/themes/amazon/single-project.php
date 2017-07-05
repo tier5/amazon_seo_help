@@ -14,6 +14,10 @@ get_header(); ?>
 
 <div class="wrap">
 	<div id="primary" class="content-area">
+	<div class="container">
+	<div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="product-details">
 		<main id="main" class="site-main" role="main">
 
 			<?php
@@ -30,6 +34,12 @@ get_header(); ?>
 			?>
 
 		</main><!-- #main -->
+		</div>
+
+	</div>
+	</div>		
+	</div>	
+
 	</div><!-- #primary -->
 	<?php //get_sidebar(); ?>
 </div><!-- .wrap -->
