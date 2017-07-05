@@ -160,6 +160,15 @@ class UserController extends BaseController
 		else{
 			User::create(['firstname' => $data['firstname'],'lastname' => $data['lastname'],'userName' => $data['username'],'email' => $data['email'],
 						  'password' => bcrypt($data['password'])]);
+
+			$userdata = array(
+			    'user_login'  =>  $data['email'],
+			    'user_email'  =>  $data['email'],
+			    'user_pass'   =>  $data['password']
+			);
+			$user_id = wp_insert_user( $userdata ) ;
+			update_user_meta($user_id,'laravel_user',$user->id);
+
 			return view('admin/dashboard');
 		}
 		

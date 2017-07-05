@@ -9,14 +9,16 @@
  * @since 1.0
  * @version 1.0
  */
-
 get_header();
-
 ?>
 
 <div class="wrap">
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="template-page">
+				<main id="main" class="site-main" role="main">
 
 			<?php
 			/* Start the Loop */
@@ -32,7 +34,11 @@ get_header();
 			endwhile; // End of the loop.
 			?>
 
-		</main><!-- #main -->
+				</main><!-- #main -->
+				</div>
+			</div>
+		</div>
+	</div>	
 	</div><!-- #primary -->
 	<?php //get_sidebar(); ?>
 </div><!-- .wrap -->

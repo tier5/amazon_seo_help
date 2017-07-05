@@ -471,7 +471,7 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#blah')
+                    jQuery('#blah')
                         .attr('src', e.target.result)
                         .width(150)
                         .height(90);
@@ -483,7 +483,7 @@
 </script>
 
 <script>
-$(document).ready(function(){
+jQuery(document).ready(function($){
     $("#hide").click(function(){
        alert('yty');
          $('#blah').attr('src', '#');
