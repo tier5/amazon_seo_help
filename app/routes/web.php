@@ -23,9 +23,13 @@ Route::get('dashboard', function () {
 });
 Route::get('userpanel', function () {
     return view('admin/userpanel');
-});*/
+});
 Route::get('dashboard',array('as'=>'/dashboard',function() {
             return view('admin/dashboard');
+}));*/
+
+Route::get('dashboard',array('as'=>'/dashboard',function() {
+            return view('layouts/master');
 }));
 Route::get('user',array('as'=>'/user',function() {
             return view('admin/user');

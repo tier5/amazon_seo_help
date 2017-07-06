@@ -1,3 +1,5 @@
 wp-config.php
 wp-content/uploads/
-/.htaccess
+.htaccess
+.env
+app/vendor

@@ -1,85 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Amazon Seo Help</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo asset('admin/css/bootstrap.min.css')?>" type="text/css"> 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- jvectormap -->
-<!--   <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css"> -->
-  <!-- Theme style -->
-  
-  <link rel="stylesheet" href="<?php echo asset('admin/css/AdminLTE.min.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('admin/css/all.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.min.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.print.min.css')?>" type="text/css" media='print'> 
-      
+<header class="main-header">
+  <a href="#" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini"><img src="<?php echo asset('admin/images/amazon-seo.png');?>" alt="img"></span>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg"><img src="<?php echo asset('admin/images/amazon-seo.png');?>" alt="img"></span>
+  </a>
 
 
- <!--  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"> -->
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="<?php echo asset('admin/css/animate.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('admin/css/style.css')?>" type="text/css"> 
-   
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-  
-    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" >
-      $(document).ready(function() {
-        $.noConflict();  
-        var dataTable = $('#employee-grid').DataTable( {
-          "processing": true,
-          "serverSide": true,
-          "ajax":{
-            url :"{{ URL::to('/users') }}", // json datasource 
-            type: "post",  // method  , by default get
-            data: {"_token": "{{ csrf_token() }}"},
-            error: function(){  // error handling
-              $(".employee-grid-error").html("");
-              $("#employee-grid").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
-              $("#employee-grid_processing").css("display","none");
-              
-            }
-          }
-        } );
-      } );
-    </script>   
-
-
-<link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.min.css')?>" type="text/css"> 
-<link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.print.min.css')?>" media='print' type="text/css"> 
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
-
-<div class="wrapper">
-
-  <header class="main-header">
-      <a href="#" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src="<?php echo asset('admin/images/amazon-seo.png');?>" alt="img"></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img src="<?php echo asset('admin/images/amazon-seo.png');?>" alt="img"></span>
-    </a>
-
-
-    <!-- Header Navbar: style can be found in header.less -->
+  <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <div class="top-header">
       <!-- Sidebar toggle button-->
@@ -211,10 +139,6 @@
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
           <li class="dropdown tasks-menu">
-            <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a> -->
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
               <li>
@@ -232,8 +156,7 @@
                         </div>
                       </div>
                     </a>
-                  </li>
-                 
+                  </li>                 
                   <li>
                     <a href="#">
                       <h3>
@@ -289,16 +212,15 @@
               <img src="../admin/images/avatar04.png" class="user-image" alt="User Image">
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
+            <ul class="dropdown-menu">             
+             <!-- User image -->
               <li class="user-header">
                 <img src="../admin/images/user8-128x128.jpg" class="img-circle" alt="User Image">
-
                 <p>
                   Alexander Pierce - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
-              </li>
+              </li>              
               <!-- Menu Body -->
               <li class="user-body">
                 <div class="row">
@@ -326,35 +248,29 @@
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
-          
         </ul>
          <div class="clearfix"></div>
-
       </div>
   <!--     <div class="clearfix"></div> -->
 
       <h1>
-        Admin Panel
-        
+        Admin Panel        
       </h1>
-      <div class="search-panel">
-      
 
+    <div class="search-panel">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-search" aria-hidden="true"></i>
-              
-            </a>
-            <div class="dropdown-menu searchbox">
-                <span>
-                <input placeholder="Search..." type="text" name=""> <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                </span>
-            </div>
+              <i class="fa fa-search" aria-hidden="true"></i>        
+      </a>
 
+      <div class="dropdown-menu searchbox">
+          <span>
+          <input placeholder="Search..." type="text" name=""> <button><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
       </div>
-      <div class="clearfix"></div>
-      </div>
-      
-      
-      
-    </nav>
-  </header>
+    </div>
+
+    <div class="clearfix"></div>
+  </div>
+ </nav>
+</header>
+
