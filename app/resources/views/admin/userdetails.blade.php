@@ -26,7 +26,12 @@
           <a href="{{ route('/user') }}">
             <i class="fa fa-users" aria-hidden="true"></i> <span>Users</span>
           </a>
-        </li>  
+        </li> 
+        <li class="active bounceInLeft animated">
+          <a href="{{ route('/package') }}">
+            <i class="fa fa-users" aria-hidden="true"></i> <span>Package</span>
+          </a>
+        </li>   
         <li class="treeview bounceInLeft animated">
           <a href="repots.html">
             <i class="fa fa-area-chart" aria-hidden="true"></i>
@@ -430,11 +435,11 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3.1.1 -->
-<script src="../admin/js/jquery-3.1.1.min.js"></script>
+<script src="<?php echo asset('admin/js/jquery-3.1.1.min.js') ?>"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../admin/js/bootstrap.min.js"></script>
-<script src="../admin/js/adminlte.js"></script>
-<script src="../admin/js/jquery.slimscroll.min.js"></script>
+<script src="<?php echo asset('admin/js/bootstrap.min.js') ?>"></script>
+<script src="<?php echo asset('admin/js/adminlte.js')?>"></script>
+<script src="<?php echo asset('admin/js/jquery.slimscroll.min.js')?>"></script>
 
 
 

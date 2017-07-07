@@ -23,15 +23,18 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script>
          $(document).ready(function() {
+          
             $("#sign-in").click(function() {
               alert( "Handler for .click() called." );
               var email = $("#email").val();
               var password = $("#password").val();
+
               var token = $("#token").val();
               $.post('{{ URL::to('/login') }}', { email: email, password: password, _token: token}, function(result){
                       //alert(JSON.stringify(result));
                       //alert(result.message);
-                      if(result.errors == undefined && result.message == undefined){
+                      //alert(9999);
+                      if(result.message == "success"){
                         window.location="{{URL::to('dashboard')}}";
                       }else{  
                             $('.error_msg').html(result.message);

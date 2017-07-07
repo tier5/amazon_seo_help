@@ -17,11 +17,27 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::get('amazonseo',array('as'=>'/amazonseo',function() {
             return view('admin/profile');
 }));
 
-Route::post('/login','UserController@login');
+Route::post('login',[
+    'uses' => 'UserController@login',
+    'as' => 'login'
+]);
 Route::get('dashboard',array('as'=>'/dashboard',function() {
-return view('admin/dashboard');
+            return view('admin/dashboard');
 }));
+/*Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::post('login',[
+    'uses' => 'UserController@login',
+    'as' => '/login'
+]);
+});*/
+
+
+//Route::post('/login','UserController@login');
+/*Route::middleware('auth:api')->get('dashboard',array('as'=>'/dashboard',function() {
+return view('admin/dashboard');
+}));*/

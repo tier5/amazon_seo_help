@@ -26,6 +26,11 @@
           <a href="user.html">
             <i class="fa fa-users" aria-hidden="true"></i> <span>Users</span>
           </a>
+        </li> 
+        <li class="active bounceInLeft animated">
+          <a href="{{ route('/package') }}">
+            <i class="fa fa-users" aria-hidden="true"></i> <span>Package</span>
+          </a>
         </li>  
         <li class="treeview bounceInLeft animated">
           <a href="reports.html">
@@ -91,9 +96,9 @@
                           <div id="Cars2" class="desc">
                               <table class="table">
                                 <tr>
-                                  <td><span class="count">1</span> <input type="radio" name=""> BRONZE PACKAGE</td>
-                                  <td><span class="count">2 </span><input type="radio" name=""> SILVER PACKAGE</td>
-                                  <td><span class="count">3 </span><input type="radio" name=""> GOLD PACKAGE</td>
+                                  <td><span class="count">1</span> <input type="radio" name="package"> BRONZE PACKAGE</td>
+                                  <td><span class="count">2 </span><input type="radio" name="package"> SILVER PACKAGE</td>
+                                  <td><span class="count">3 </span><input type="radio" name="package"> GOLD PACKAGE</td>
                                 </tr>  
                               </table>
                           </div>
@@ -101,9 +106,9 @@
                               
                               <table class="table">
                                 <tr>
-                                  <td><span class="count">1</span> <input type="radio" name=""> SILVER PACKAGE</td>
-                                  <td><span class="count">2 </span><input type="radio" name=""> GOLD PACKAGE</td>
-                                  <td><span class="count">3 </span><input type="radio" name=""> PLATINUM PACKAGE</td>
+                                  <td><span class="count">1</span> <input type="radio" name="package"> SILVER PACKAGE</td>
+                                  <td><span class="count">2 </span><input type="radio" name="package"> GOLD PACKAGE</td>
+                                  <td><span class="count">3 </span><input type="radio" name="package"> PLATINUM PACKAGE</td>
                                 </tr>  
                               </table>
 
@@ -119,10 +124,11 @@
                 <div class="row">
                   <div class="col-md-12 col-sm-12">
                       <h3>Amazon Seo Profile</h3>
+                    <form id="amazonseoprofile">  
                       <div class="row">
                           <div class="col-md-12 col-sm-12">
                               <div class="form-group">
-                                  <label>User ID</label>
+                                  <label>User name</label>
                                   <input class="form-control" type="text" name="">
                               </div>
                           </div>  
@@ -155,7 +161,7 @@
                               </div>
                            </div>
                       </div>
-                      <div class="row">
+                      <!-- <div class="row">
                           <div class="col-md-12 col-sm-12">
                               <div class="form-group">
                                   <input class="btn btn-default" type="submit" value="Submit" name="">
@@ -163,7 +169,7 @@
                           </div>  
                       </div>
 
-
+                  </form> -->
 
                   </div>
                 </div>  
@@ -171,39 +177,40 @@
                 <div class="row">
                 <div class="col-md-12 col-sm-12">
                       <h3>Amazon Seller Account Details</h3>
-                      <div class="row">
-                      <div class="col-md-12 col-sm-12">  
-                      <div class="form-group">
-                          <label>Username</label>
-                          <input class="form-control" type="text" name="">
-                      </div>
-                      </div>
-                      </div>
-                      <div class="row">
-                      <div class="col-md-6 col-sm-6">
-                      <div class="form-group">
-                          <label>Password</label>
-                          <input class="form-control" type="password" name="">
-                      </div> 
-                      </div>
-                      <div class="col-md-6 col-sm-6">
-                      <div class="form-group">
-                          <label>Re-type Password</label>
-                          <input class="form-control" type="password" name="">
-                      </div> 
-                      </div>
+                  <!-- <form id="amazonselleraccountdtls">    
+                       <div class="row">
+                        <div class="col-md-12 col-sm-12">  
+                          <div class="form-group">
+                              <label>Username</label>
+                              <input class="form-control" type="text" name="">
+                          </div>
+                        </div>
                       </div>
                       <div class="row">
-                      <div class="col-md-12 col-sm-12">
-                      <div class="form-group">
-                          <label>Amazon Region Selection</label>
-                          <select class="form-control">
-                              <option>US</option>
-                              <option>UK</option>
-                              <option>CA</option>
-                          </select>
-                      </div>
-                      </div>
+                        <div class="col-md-6 col-sm-6">
+                          <div class="form-group">
+                              <label>Password</label>
+                              <input class="form-control" type="password" name="">
+                          </div> 
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                          <div class="form-group">
+                              <label>Re-type Password</label>
+                              <input class="form-control" type="password" name="">
+                          </div> 
+                        </div>
+                      </div> -->
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                          <div class="form-group">
+                              <label>Amazon Region Selection</label>
+                              <select class="form-control">
+                                  <option>US</option>
+                                  <option>UK</option>
+                                  <option>CA</option>
+                              </select>
+                          </div>
+                        </div>
                       </div>
                       
                       <div class="row">
@@ -230,7 +237,7 @@
                               </div>
                           </div>  
                       </div>
-
+                  </form> 
                 </div>
                 </div>
 
@@ -443,11 +450,11 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3.1.1 -->
-<script src="../admin/js/jquery-3.1.1.min.js"></script>
+<script src="<?php echo asset('admin/js/jquery-3.1.1.min.js') ?>"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../admin/js/bootstrap.min.js"></script>
-<script src="../admin/js/adminlte.js"></script>
-<script src="../admin/js/jquery.slimscroll.min.js"></script>
+<script src="<?php echo asset('admin/js/bootstrap.min.js') ?>"></script>
+<script src="<?php echo asset('admin/js/adminlte.js')?>"></script>
+<script src="<?php echo asset('admin/js/jquery.slimscroll.min.js')?>"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {

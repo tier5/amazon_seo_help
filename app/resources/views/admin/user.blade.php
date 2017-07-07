@@ -88,7 +88,8 @@
                           <input placeholder="Enter name or email" class="form-control" type="text" name="">
                       </div> -->
                       <div class="col-md-2 col-md-2">
-                        <button class="btn btn-default">Add New User</button>
+                        <!-- <button class="btn btn-default">Add New User</button> -->
+                        <a class="btn btn-default" href="{{ route('/userdetails') }}">Add New User</a>
                       </div>
 
                   </div>
@@ -390,11 +391,11 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3.1.1 -->
-<script src="../admin/js/jquery-3.1.1.min.js"></script>
+<script src="<?php echo asset('admin/js/jquery-3.1.1.min.js') ?>"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../admin/js/bootstrap.min.js"></script>
-<script src="../admin/js/adminlte.js"></script>
-<script src="../admin/js/jquery.slimscroll.min.js"></script>
+<script src="<?php echo asset('admin/js/bootstrap.min.js') ?>"></script>
+<script src="<?php echo asset('admin/js/adminlte.js')?>"></script>
+<script src="<?php echo asset('admin/js/jquery.slimscroll.min.js')?>"></script>
 
 
 

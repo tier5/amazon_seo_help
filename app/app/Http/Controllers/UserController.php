@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
+//namespace App\Http\Controllers\Package;
 use App\User;
+use App\Package;
 use Auth;
 use File;
 use Illuminate\Support\Facades\Validator;
@@ -12,6 +14,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+
+
 class UserController extends BaseController
 {
 	
@@ -37,11 +41,11 @@ class UserController extends BaseController
 			    $queryString = $requestData['search']['value']; 
 			    
 				$data = User::where('firstname', 'LIKE', "%$queryString%")
-				         ->orWhere('lastname', 'LIKE', "%$queryString%")
-				         ->orWhere('email', 'LIKE', "%$queryString%")
-				         ->orWhere('role', 'LIKE', "%$queryString%")
-				         ->orWhere('username', 'LIKE', "%$queryString%")
-				         ->orderBy('firstname')->paginate(5);
+					         ->orWhere('lastname', 'LIKE', "%$queryString%")
+					         ->orWhere('email', 'LIKE', "%$queryString%")
+					         ->orWhere('role', 'LIKE', "%$queryString%")
+					         ->orWhere('username', 'LIKE', "%$queryString%")
+					         ->orderBy('firstname')->paginate(5);
 			}else{
 				$data = User::where('id', '!=', 1)->get();
 			}
@@ -73,8 +77,9 @@ class UserController extends BaseController
 			);
 		echo json_encode($json_data);
 	}
-	public function login()
+	public function login(Request $request)
 	{
+	   
 	   $username = Input::get('email');
 	   $password = Input::get('password');
 	   $data = Input::all();
@@ -87,13 +92,15 @@ class UserController extends BaseController
 	    
 	    if ($validator->fails()){
 	      // If validation falis redirect back to login.
+
 	      return response()->json(['errors'=>$validator->errors()]);
-	      echo 9956; die;	
+	      	
 	      //return Redirect::to('/')->withInput(Input::except('password'))->withErrors(Input::except('password'));
 	      return Redirect::back()->withErrors($validator);
 	    }
 	    else{
-	    		//echo 6578; die;
+	    		//echo Auth::user()->id;
+					//die;
 				
 				$userdata = array(
 					'email' => Input::get('email') ,
@@ -104,7 +111,8 @@ class UserController extends BaseController
  
 				if (Auth::attempt($userdata))
 				{
-					//echo 9999; 
+					
+					
 					// validation successful
 					// do whatever you want on success
 					//return Redirect::to('admin/dashboard');
@@ -113,13 +121,19 @@ class UserController extends BaseController
 					//exit;
 					//return redirect('admin/dashboard');
 					//return route('dashboard');
+					return response()->json(array(
+		                    'message'   =>  'success'
+		                ));
 
 					$creds = array();
 					$creds['user_login'] = Input::get('email');
 					$creds['user_password'] = Input::get('password');
 					$creds['remember'] = true;
-					$user = wp_signon( $creds, false );
-					
+					//$user = wp_signon( $creds, false );
+					// $request->session()->regenerate();
+     //        		return response(['success' => true], Response::HTTP_OK);
+					//return redirect()->route('/dashboard');
+					//exit;
 				}
 			  else
 				{
@@ -173,6 +187,28 @@ class UserController extends BaseController
 		}
 		
 	}
+	public function createPackage(){
+
+		return view('admin/package');
+	}	
+	
+	
+	public function packagerecord(){
+		
+		$package = new Package;
+			
+		for($i=0;$i<count($data);$i++){
+			//echo $data['package'][$i];
+			/*Package::create(['packagename' => $data['package'][$i],'packagetag' => $data['packagetag'][$i],'status' => 'active']);*/
+			$package->packagename = $data['package'][$i];
+			$package->packagetag = $data['packagetag'][$i];
+			$package->status = 'active';
+			$package->save();
+
+		}
+		//die;
+		return view('admin/package');
+	}
 	public function profileupdate(UserController $request){
 		$data = Input::all();
 		$id = $data['id'];
@@ -219,5 +255,11 @@ class UserController extends BaseController
     	$user->save();
    		//return \Redirect::route('/profile', [$user->id])->with('message', 'User has been updated!');
    		return redirect()->route('/profile')->with('message', 'Password updated successfully');
+	}
+
+	public function profile() {
+
+		dd(Auth::user());
+		//return view('admin/profile');
 	}
 }	

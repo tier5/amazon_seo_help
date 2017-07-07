@@ -459,11 +459,11 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3.1.1 -->
-<script src="../admin/js/jquery-3.1.1.min.js"></script>
+<script src="<?php echo asset('/admin/js/jquery-3.1.1.min.js')?>"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../admin/js/bootstrap.min.js"></script>
-<script src="../admin/js/adminlte.js"></script>
-<script src="../admin/js/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="<?php echo asset('/admin/js/bootstrap.min.js')?>"></script>
+<script src="<?php echo asset('/admin/js/bootstrap.min.js')?>"></script>
+<script src="<?php echo asset('/admin/js/slimScroll/jquery.slimscroll.min.js')?>"></script>
 
 <script type="text/javascript">
        function readURL(input) {

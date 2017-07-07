@@ -43,6 +43,7 @@
     <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" >
       $(document).ready(function() {
+        var select = 1;
         $.noConflict();  
         var dataTable = $('#employee-grid').DataTable( {
           "processing": true,
@@ -59,7 +60,18 @@
             }
           }
         } );
-      } );
+
+
+        $("#addpackage").click(function() {
+                select++;
+                var abcd = "<div id='packagediv'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'></div></div><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package name</label>           <input class='form-control' name='package[]' type='text' ></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'></div></div><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package tag</label>                           <input class='form-control' type='text' name='packagetag[]'></div></div></div><input class='btn btn-default remove' type='button' value='Remove package' name='' style='margin-left: 550px;'></div>";
+
+                $('#packagediv').append(abcd);
+            });
+        $(document).on('click','.remove',function() {
+             $(this).parent('div').remove();
+            });
+        });
     </script>   
 
 
