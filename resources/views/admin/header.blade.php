@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Amazon Seo Help</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo asset('admin/css/bootstrap.min.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('../admin/css/bootstrap.min.css')?>" type="text/css"> 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -17,10 +16,10 @@
 <!--   <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css"> -->
   <!-- Theme style -->
   
-  <link rel="stylesheet" href="<?php echo asset('admin/css/AdminLTE.min.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('admin/css/all.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.min.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.print.min.css')?>" type="text/css" media='print'> 
+  <link rel="stylesheet" href="<?php echo asset('../admin/css/AdminLTE.min.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('../admin/css/all.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('../admin/css/fullcalendar.min.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('../admin/css/fullcalendar.print.min.css')?>" type="text/css" media='print'> 
       
 
 
@@ -35,8 +34,8 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="<?php echo asset('admin/css/animate.css')?>" type="text/css"> 
-  <link rel="stylesheet" href="<?php echo asset('admin/css/style.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('../admin/css/animate.css')?>" type="text/css"> 
+  <link rel="stylesheet" href="<?php echo asset('../admin/css/style.css')?>" type="text/css"> 
    
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
@@ -44,7 +43,6 @@
     <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" >
       $(document).ready(function() {
-        var select = 0;
         $.noConflict();  
         var dataTable = $('#employee-grid').DataTable( {
           "processing": true,
@@ -61,58 +59,12 @@
             }
           }
         } );
-
-
-        $("#addpackage").click(function() {
-                select++;
-                var jArray= <?php echo json_encode($items); ?>;
-                //alert(jArray.featurename);
-                var opt ='';
-                var opt2 ='';
-                for(var i=0;i<jArray.featurename.length;i++){
-                    opt +="<option value='"+jArray.featureid[i]+"'>"+jArray.featurename[i]+"</option>";
-                  }
-                for(var i=0;i<jArray.servicename.length;i++){
-                    opt2 +="<option value='"+jArray.serviceid[i]+"'>"+jArray.servicename[i]+"</option>";
-                  }
-
-                //alert(opt);  
-                var abcd = "<div id='packagediv' class='add-pack'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Service name</label><select name='service[]'>"+opt2+"</select></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package name</label><input class='form-control' name='package[]' type='text' ></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package tag</label><input class='form-control' type='text' name='packagetag[]'></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package feature</label><select class='form-control' multiple name='feature["+select+"][]'>"+opt        
-               +"</select></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><input class='btn btn-default remove' type='button' value='Remove package' name=''></div></div><br></div>";
-
-                $('#packagediv').append(abcd);
-            });
-        $(document).on('click','.remove',function() {
-             $(this).closest('#packagediv').remove();
-            });
-
-
-        $("#addfeature").click(function() {
-                
-                var abcde = "<div id='packagediv'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Feature name</label><input class='form-control' name='feature[]' type='text' ></div></div></div>   <div class='row'><div class='col-md-6 col-sm-6'><input class='btn btn-default remove' type='button' value='Remove feature' name=''></div></div><br></div>";
-
-                $('#packagediv').append(abcde);
-            });
-        $(document).on('click','.remove',function() {
-             $(this).closest('#addfeature').remove();
-            });
-
-        $("#addservice").click(function() {
-                //alert(999);
-                var abcde = "<div id='packagediv'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Service name</label><input class='form-control' name='service[]' type='text' ></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><input class='btn btn-default remove' type='button' value='Remove feature' name=''></div></div><br></div>";
-
-                $('#packagediv').append(abcde);
-            });
-
-         $(document).on('click','.remove',function() {
-             $(this).closest('#addservice').remove();
-            });
-        });
+      } );
     </script>   
 
 
-<link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.min.css')?>" type="text/css"> 
-<link rel="stylesheet" href="<?php echo asset('admin/css/fullcalendar.print.min.css')?>" media='print' type="text/css"> 
+<link rel="stylesheet" href="<?php echo asset('../admin/css/fullcalendar.min.css')?>" type="text/css"> 
+<link rel="stylesheet" href="<?php echo asset('../admin/css/fullcalendar.print.min.css')?>" media='print' type="text/css"> 
 </head>
 <?php /*print_r(Auth::user()); if(Auth::user()->role == "admin")
         echo 8888;
@@ -121,15 +73,14 @@
    
 {{ Auth::user()->role }}
 <body class="hold-transition skin-blue sidebar-mini">
-
 <div class="wrapper">
 
   <header class="main-header">
       <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src="<?php echo asset('admin/images/amazon-seo.png');?>" alt="img"></span>
+      <span class="logo-mini"><img src="../admin/images/amazon-seo.png" alt="img"></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img src="<?php echo asset('admin/images/amazon-seo.png');?>" alt="img"></span>
+      <span class="logo-lg"><img src="../admin/images/amazon-seo.png" alt="img"></span>
     </a>
 
 
@@ -408,7 +359,7 @@
       <div class="clearfix"></div>
       </div>
       
-     
+      
       
     </nav>
   </header>

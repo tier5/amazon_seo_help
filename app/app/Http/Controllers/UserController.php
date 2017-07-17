@@ -3,6 +3,9 @@ namespace App\Http\Controllers;
 //namespace App\Http\Controllers\Package;
 use App\User;
 use App\Package;
+use App\Features;
+use App\Package_feature;
+use App\Services;
 use Auth;
 use File;
 use Illuminate\Support\Facades\Validator;
@@ -163,6 +166,7 @@ class UserController extends BaseController
 		    'email.required' => 'Email is required',
 		    'username.unique' => 'Username is taken'
 		]);
+
 		if ($validator->fails()) {
 			$errors = $validator->errors();
 			//dd($errors);
@@ -189,26 +193,171 @@ class UserController extends BaseController
 	}
 	public function createPackage(){
 
-		return view('admin/package');
-	}	
-	
-	
-	public function packagerecord(){
+		$docs = Features::all();
+		$services = services::all();
+		//echo '<pre>';
+		//print_r($services);
+		//echo $services->servicename;
+		//echo $docs[0]->featurename;
+		//echo count($docs);
+		foreach($docs as $username) {
+		 $items['featurename'][] = $username->featurename;
+		 $items['featureid'][] = $username->id;
+		}
+
+		foreach($services as $service) {
+		 $items['servicename'][] = $service->servicename;
+		 $items['serviceid'][] = $service->id;
+		}
+		//print_r($items);
+		//echo '</pre>';
 		
-		$package = new Package;
-			
+		return view('admin/package',compact('items'));
+		//return View::make('package')->with($items);
+	}
+	public function packagefeature(){
+
+		return view('admin/packagefeature');
+	}
+
+	public function createServices(){
+
+		return view('admin/services');
+	}
+	public function servicerecord(){
+		//echo 999; die;
+		$data = Input::all();
+		/*echo '<pre>';
+		print_r($data);
+		echo '</pre>';
+		exit; */
 		for($i=0;$i<count($data);$i++){
+			$services = new services;
+			if(!isset($data['service'][$i]) || !$data['service'][$i]) continue;
 			//echo $data['package'][$i];
 			/*Package::create(['packagename' => $data['package'][$i],'packagetag' => $data['packagetag'][$i],'status' => 'active']);*/
+			$services->servicename = $data['service'][$i];
+			$services->status = 'active';
+			
+			$services->save();
+		}
+		
+		return view('admin/services');
+	}
+
+
+	public function packagerecord(){
+		$data = Input::all();
+
+		for($i=0;$i<count($data);$i++){
+			$package = new Package;
+			
+			if(!isset($data['package'][$i]) || !$data['package'][$i]) continue;
+			
 			$package->packagename = $data['package'][$i];
 			$package->packagetag = $data['packagetag'][$i];
+			$package->service_id = $data['service'][$i];
+			$package->packageprice = $data['price'][$i];
 			$package->status = 'active';
 			$package->save();
+			//echo 'package id '.$package->id;
+			//exit;
+			if(isset($data['feature'][$i])){
+				
+				for($j=0;$j<count($data['feature'][$i]);$j++){
+					$packagefeature = new Package_feature;
+					$packagefeature->package_id = $package->id;  
+					$packagefeature->feature_id = $data['feature'][$i][$j];
+					$packagefeature->save();
+				}
+			}
+
 
 		}
-		//die;
-		return view('admin/package');
+		//echo 'last id'.$last_id;
+		//exit;
+		//dd($data);
+		return $this->createPackage();
+
+		//return view('admin/package');
 	}
+
+
+	public function seoservice(){
+
+	//$servicedtls = Services::with('package')
+				//->join('package_feature', 'package_feature.package_id', '=', 'package.id')
+				//->where('services.servicename', '=', 'SEO')->get();
+
+	/*$servicedtls = Services::with('package')
+	            	->where('servicename', '=', 'SEO')
+					->get();*/
+	$service = Input::get('service');
+	$name = Input::get('name');				
+	echo $service.''.$name;
+	$seopackage = array();				
+	$seoService = Services::where('servicename', 'SEO')->first()->package;
+	foreach($seoService as $packageid => $package){
+		//echo '<br>'.$package->id.'   '.$package->packagename.'<br>';
+
+		//$seopackage[$packageid] = $package->id;
+		//$seopackage['package_name'][] = $package->packagename;
+		$seopackage['package_tag'][] = $package->packagetag;
+		foreach($package->feature as $key => $value){
+			//echo ' '. $value->id.'   '.$value->featurename;
+			//echo $package->feature;
+			$seopackage[$package->packagename][] = $value->featurename;
+		//dd($package->feature);
+		}
+	}
+	echo '<pre>';
+	print_r($seopackage);
+	echo '</pre>';
+	echo json_encode($seopackage);
+
+	//$servicedtls = Package::with('service','feature')
+	            	//->where('service.servicename', '=', 'SEO')
+					//->get();					
+	//echo '<pre>';
+	//print_r($servicedtls);
+	//echo '</pre>';die;
+
+	//dd($servicedtls);
+	//$posts = Package::with(array('services', 'services.servicename'))->get();
+	/*$service = array();
+	foreach($servicedtls as $key => $value ) {
+        echo count($value->package);
+        for($i=0;$i<count($value->package);$i++){
+        	//echo $value->package[$i];
+        	$service['packagename'][] = $value->package[$i]->packagename;
+        	$service['packageid'][] = $value->package[$i]->id;  
+        	$service['packagetag'][] = $value->package[$i]->packagetag;
+        	$service['service_id'][] = $value->package[$i]->service_id;
+        }
+				
+		 //$service['packagename'][] = $serviceseo->packagename;
+		 //$service['featureid'][] = $serviceseo->id;
+		}*/
+	
+	//dd($service);
+	}
+	public function packagefeatureinsert(){
+		$data = Input::all();
+		
+		//dd($data);
+			
+		for($i=0;$i<count($data);$i++){
+			$features = new Features;
+			$features->featurename = $data['feature'][$i];
+			$features->status = 'active';
+			
+			$features->save();
+		}
+		
+		return view('admin/packagefeature');
+	}
+
+	
 	public function profileupdate(UserController $request){
 		$data = Input::all();
 		$id = $data['id'];

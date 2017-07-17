@@ -1,7 +1,6 @@
 @include('admin/header')
-@include('admin/sidebar')
   <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
+<aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
 <section class="sidebar">
       <!-- Sidebar user panel -->
@@ -27,9 +26,8 @@
           <a href="user.html">
             <i class="fa fa-users" aria-hidden="true"></i> <span>Users</span>
           </a>
-        </li>
-
-        <!-- <li class="active bounceInLeft animated">
+        </li> 
+        <li class="active bounceInLeft animated">
           <a href="{{ route('/package') }}">
             <i class="fa fa-users" aria-hidden="true"></i> <span>Package</span>
           </a>
@@ -43,35 +41,7 @@
           <a href="{{ route('/services') }}">
             <i class="fa fa-users" aria-hidden="true"></i> <span>Services</span>
           </a>
-        </li> --> 
-
-        <li class="treeview bounceInLeft animated">
-          <a href="javascript:void(0)">
-            <i class="fa fa-area-chart" aria-hidden="true"></i>
-            <span>Package</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active bounceInLeft animated">
-              <a href="{{ route('/package') }}">
-                <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Add Package</span>
-              </a>
-            </li>
-            <li class="active bounceInLeft animated">
-              <a href="{{ route('/packagefeature') }}">
-                <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Add Feature</span>
-              </a>
-            </li>
-            <li class="active bounceInLeft animated">
-              <a href="{{ route('/services') }}">
-                <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Add Services</span>
-              </a>
-            </li> 
-          </ul>
-        </li>
-
+        </li>       
         <li class="treeview bounceInLeft animated">
           <a href="reports.html">
             <i class="fa fa-area-chart" aria-hidden="true"></i>
@@ -87,8 +57,6 @@
             
           </ul>
         </li>
-
-
         <li class="bounceInLeft animated">
           <a href="inbox.html">
             <i class="fa fa-envelope" aria-hidden="true"></i> <span>Inbox</span>
@@ -128,86 +96,42 @@
 
                 <div class="row">
                   <div class="col-md-12 col-sm-12">
-                      <h3>Amazon Seo Package</h3>
-                      <form method="post" method="post" action="{{ route('/packagerecord') }}">
+                      <h3>Amazon Services</h3>
+                      <form method="post" method="post" action="{{ route('/servicerecord') }}">
                       <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                       <div class="row">
-                          <!-- <div class="col-md-6 col-sm-6">
-                              <div class="form-group">
-                              </div>
-                          </div> -->
+                          
                           <div class="col-md-6 col-sm-6">
                               <div class="form-group" style="float: left;">
-                                  <input class="btn btn-default" type="button" value="Add package"  id="addpackage" name="">
+                                  <input class="btn btn-default" type="button" value="Add services"  id="addservice" name="">
                               </div> 
                               <div class="form-group" style="float: right;padding-right: 269px;">
                                   <!--<input class="btn btn-default" type="button" value="Remove package" id="removepackage" name="" > -->
                               </div>  
                           </div>  
                       </div>
-                      <div id="packagediv">
+                      <div id="packagediv"> 
                           <div class="row">
-                              <!-- <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                  </div>
-                              </div> -->
+                              
                               <div class="col-md-6 col-sm-6">
                                   <div class="form-group">
-                                  <label>Services name</label>
-                                      <select name="service[]" >
-                                        @foreach($items['servicename'] as $k => $v)
-                                        <option value="<?php echo $items['serviceid'][$k];?>"><?php echo $v;?></option>    
-                                        @endforeach  
-                                      </select>
-                                  </div>
-                              </div>  
-                          </div>  
-                          <div class="row">
-                              <!-- <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                  </div>
-                              </div> -->
-                              <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                      <label>Package name</label>
-                                      <input class="form-control" type="text" name="package[]">
+                                      <label>Service name</label>
+                                      <input class="form-control" type="text" name="service[]">
                                   </div>
                               </div>  
                           </div> 
-                          <div class="row">
-                               <!-- <div class="col-md-6 col-sm-6">
+                          <!-- <div class="row">
+                               <div class="col-md-6 col-sm-6">
                                   <div class="form-group">
                                   </div>
-                               </div> -->
+                               </div>
                                <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                       <label>Package tag</label>
                                       <input class="form-control" type="text" name="packagetag[]">
                                   </div>
                                </div>
-                          </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                      <label>Package feature</label>
-                                      <!--<input class="form-control" type="text" name="packagetag[]"> -->
-                                      <select class="form-control" multiple name="feature[0][]" >
-                                        @foreach($items['featurename'] as $k => $v)
-                                        <option value="<?php echo $items['featureid'][$k];?>"><?php echo $v;?></option>    
-                                        @endforeach  
-                                      </select>
-                                  </div>
-                               </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                      <label>Package price</label>
-                                      <input class="form-control" type="text" name="price[]">
-                                  </div>
-                              </div>  
-                               </div>
-                          </div>
+                          </div> -->
                      </div> 
                      <div class="row">
                           <div class="col-md-6 col-sm-6">

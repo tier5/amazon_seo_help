@@ -29,6 +29,11 @@ Route::post('login',[
 Route::get('dashboard',array('as'=>'/dashboard',function() {
             return view('admin/dashboard');
 }));
+
+Route::get('seoservice',[
+    'uses' => 'APIController@seoservice',
+    'as' => '/seoservice'
+]);
 /*Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('login',[
     'uses' => 'UserController@login',

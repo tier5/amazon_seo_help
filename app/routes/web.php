@@ -39,6 +39,8 @@ Route::get('userpanel',array('as'=>'/userpanel',function() {
 Route::get('profile',array('as'=>'/profile',function() {
             return view('admin/profile');
 }));
+
+
 /*Route::get('profileupdate',array('as'=>'/profileupdate',function() {
             return view('admin/profileupdate');
 }));*/
@@ -46,11 +48,19 @@ Route::post('profileupdate',[
     'uses' => 'UserController@profileupdate',
     'as' => '/profileupdate'
 ]);
-
+Route::get('services',[
+    'uses' => 'UserController@createServices',
+    'as' => '/services'
+]);
 
 Route::post('packagerecord',[
     'uses' => 'UserController@packagerecord',
     'as' => '/packagerecord'
+]);
+
+Route::post('packagefeatureinsert',[
+    'uses' => 'UserController@packagefeatureinsert',
+    'as' => '/packagefeatureinsert'
 ]);
 
 
@@ -59,7 +69,16 @@ Route::get('package',[
     'uses' => 'UserController@createPackage',
     'as' => '/package'
 ]);
+Route::post('servicerecord',[
+    'uses' => 'UserController@servicerecord',
+    'as' => '/servicerecord'
+]);
 
+
+Route::get('packagefeature',[
+    'uses' => 'UserController@packagefeature',
+    'as' => '/packagefeature'
+]);
 
 Route::post('passwordupdate',[
     'uses' => 'UserController@passwordupdate',

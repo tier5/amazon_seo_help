@@ -56,15 +56,19 @@ jQuery(document).ready(function($){
 	});
 
     $("#sign-in").click(function() {
-              //alert( "Handler for .click() called." );
+              alert( "Handler for .click() called." );
               var email = $("#email").val();
               var password = $("#password").val();
-              var token = $("#token").val();
-              $.post('http://localhost/amazonseo/app/public/api/login', { email: email, password: password, _token: token}, function(result){
-                      //alert(JSON.stringify(result));
+
+              $.post('http://localhost/amazonseo/app/public/api/login', { email: email, password: password}, function(result){
+                      alert(JSON.stringify(result));
+                      console.log(result);
+                      if(result.message == "success")
+                        alert('ttt');
                       //alert(result.message);
-                      if(result.errors == undefined && result.message == undefined){
-                        window.location="http://localhost/amazonseo/app/public/api/dashboard";
+                      if(result.message == "success"){
+                        alert(7676);
+                        window.location.replace("http://localhost/amazonseo/app/public/api/dashboard");
                       }else{  
                             $('.error_msg').html(result.message);
                             $('.error_email').html(result.errors.email);

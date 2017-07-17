@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Package extends Migration
+class Features extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class Package extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
+       Schema::create('features', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('packagename')->nullable();
-            $table->string('packagetag')->nullable();
+            $table->string('featurename');
             $table->timestamps();
             $table->enum('status', array('active', 'inactive'));
         });
@@ -29,6 +28,6 @@ class Package extends Migration
      */
     public function down()
     {
-        Schema::drop('packages');
+        Schema::drop('features');
     }
 }

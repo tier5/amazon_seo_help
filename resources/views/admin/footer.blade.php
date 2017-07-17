@@ -1,29 +1,4 @@
-<?php
-/**
- * The template for displaying the footer
- *
- * Contains the closing of the #content div and all content after.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since 1.0
- * @version 1.2
- */
-
-
-$special_offer_args = array(
-  'post_type' => 'page',
-  'page_id' => 102
-);
-$special_offer_query  = new Wp_Query($special_offer_args);
-
-?>
-
-		</div><!-- #content -->
-
-		<footer>
+<footer>
          <div class="container">
             <div class="col-md-3 col-sm-3 col-xs-6">
                <h3>Amazon Search Engine Optimization </h3>
@@ -86,13 +61,13 @@ $special_offer_query  = new Wp_Query($special_offer_args);
             <div class="row">
                <div class="col-md-12 col-sm-12">
                   <hr>
-                  Copyright © <?php echo date("Y");?> Amazon Optimization, All Rights Reserved.
+                  Copyright © 2017 Amazon Optimization, All Rights Reserved.
                </div>
             </div>
          </div>
          <div class="chat-icon">
             <a href="#" id="addClass">
-            <img src="<?php echo get_template_directory_uri();?>/assets/images/chat-icon.png" alt="img">
+            <img src="img/chat-icon.png" alt="img">
             </a>
          </div>
       </footer>
@@ -106,7 +81,7 @@ $special_offer_query  = new Wp_Query($special_offer_args);
                </div>
                <div class="popup-head-left">
                   <!-- <div class="chat-image">
-                     <img src="images/profile_img.png" alt="img"> 
+                     <img src="img/profile_img.png" alt="img"> 
                      </div> -->
                   <div class="chat-person">
                      <h3>  
@@ -119,7 +94,7 @@ $special_offer_query  = new Wp_Query($special_offer_args);
             <div class="popup-messages">
                <div class="chat-head">
                   <div class="chat-pic">
-                     <img src="<?php echo get_template_directory_uri();?>/assets/images/profile_img.png" alt="img">
+                     <img src="img/profile_img.png" alt="img">
                   </div>
                   <div class="chat-txt grey">
                      Hi there!
@@ -138,7 +113,7 @@ $special_offer_query  = new Wp_Query($special_offer_args);
             </div>
             <div class="popup-head-left">
                <div class="chat-image">
-                  <img src="<?php echo get_template_directory_uri();?>/assets/images/profile_img.png" alt="img">
+                  <img src="img/profile_img.png" alt="img">
                </div>
                <div class="chat-person">
                   Gurdeep Osahan
@@ -165,7 +140,7 @@ $special_offer_query  = new Wp_Query($special_offer_args);
          <div class="popup-messages">
             <div class="chat-head">
                <div class="chat-pic">
-                  <img src="<?php echo get_template_directory_uri();?>/assets/images/profile_img.png" alt="img">
+                  <img src="img/profile_img.png" alt="img">
                </div>
                <div class="chat-txt grey">
                   Hi there!
@@ -181,7 +156,7 @@ $special_offer_query  = new Wp_Query($special_offer_args);
             </div>
             <div class="chat-head">
                <div class="chat-pic">
-                  <img src="<?php echo get_template_directory_uri();?>/assets/images/profile_img.png" alt="img">
+                  <img src="img/profile_img.png" alt="img">
                </div>
                <div class="chat-txt grey">
                   What the...
@@ -196,7 +171,7 @@ $special_offer_query  = new Wp_Query($special_offer_args);
             </div>
             <div class="chat-head">
                <div class="chat-pic">
-                  <img src="<?php echo get_template_directory_uri();?>/assets/images/profile_img.png" alt="img">
+                  <img src="img/profile_img.png" alt="img">
                </div>
                <div class="chat-txt grey">
                   What the...
@@ -223,17 +198,13 @@ $special_offer_query  = new Wp_Query($special_offer_args);
                   <p>Welcome back, please login to your account</p>
                </div>
                <div class="modal-body log-modal-body">
-                  <div class="error_msg" style="color:red;padding-left: 188px;"></div>
-                  <form method="post" >
-
+                  <form method="post" action="/login">
                      <div class="form-group">
-                        <input id="email" name="email" class="form-control" type="text" placeholder="Username"> 
-                        <div class="error_email" style="color:red;padding-left: 77px;"></div>
+                        <input class="form-control" type="text" placeholder="Username"> 
                      </div>
-                     <!-- <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> -->
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                      <div class="form-group">
-                        <input name="password" id="password" class="form-control" type="password" placeholder="Password"> 
-                        <div class="error_pass" style="color:red;padding-left: 77px;"></div>
+                        <input class="form-control" type="text" placeholder="Password"> 
                      </div>
                      <div class="form-group">
                         <div class="checkbox pull-left">
@@ -249,7 +220,7 @@ $special_offer_query  = new Wp_Query($special_offer_args);
                         <div class="clearfix"></div>
                      </div>
                      <div class="form-group">
-                        <input class="sign-in" id="sign-in" value="Sign in" type="button" >
+                        <input class="sign-in" value="Sign in" type="submit" >
                      </div>
                   </form>
                   <!-- <div class="modal-footer-common">
@@ -307,27 +278,26 @@ $special_offer_query  = new Wp_Query($special_offer_args);
 <div class="modal fade" id="special-offer">
   <div class="modal-dialog">
     <div class="modal-content">
-    <?php if($special_offer_query->have_posts()):?>
-        <?php while($special_offer_query->have_posts()):$special_offer_query->the_post();?>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><?php echo get_the_title();?></h4>
+        <h4 class="modal-title">Special Offer</h4>
       </div>
       <div class="modal-body">
         <!-- <a href="#"> 
-        <img src="images/off.jpg" alt="img">
+        <img src="img/off.jpg" alt="img">
         </a> -->
-        <?php echo get_the_content();?>
+        <h3>We reduce the price of SEO Package</h3>
+        <h2>From 22-05-17 to 30-07-17 </h2>
+        <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,<br> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage
+        </p>
       </div>
-        <?php endwhile;wp_reset_query();?>
-    <?php endif;?>
     </div>
   </div>
 </div>
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <!-- <script src="<?php //echo get_template_directory_uri();?>/assets/js/custom.js"></script> -->
       
 
       <script type="text/javascript">
@@ -342,12 +312,12 @@ $special_offer_query  = new Wp_Query($special_offer_args);
          })
       </script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="<?php echo get_template_directory_uri();?>/assets/js/bootstrap.min.js"></script>
-       <script src="<?php echo get_template_directory_uri();?>/assets/js/less.js" type="text/javascript"></script>
+      <script src="js/bootstrap.min.js"></script>
+       <script src="js/less.js" type="text/javascript"></script>
       <!-- Search section jquery -->
-      <script src="<?php echo get_template_directory_uri();?>/assets/js/jquery.nice-select.min.js"></script>
-      <script src="<?php echo get_template_directory_uri();?>/assets/js/fastclick.js"></script>
-      <script src="<?php echo get_template_directory_uri();?>/assets/js/prism.js"></script>
+      <script src="js/jquery.nice-select.min.js"></script>
+      <script src="js/fastclick.js"></script>
+      <script src="js/prism.js"></script>
       <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
       <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
       <script>
@@ -385,7 +355,7 @@ $special_offer_query  = new Wp_Query($special_offer_args);
              }, 350);
          });
       </script>
-<?php if(is_front_page()){?>
+
 <script type="text/javascript">
   $('#special-offer').modal('show');
 
@@ -393,10 +363,5 @@ setTimeout(function() {
     $('#special-offer').modal('hide');
 }, 9000);
 </script>
-<?php }?>
-	</div><!-- .site-content-contain -->
-</div><!-- #page -->
-<?php wp_footer(); ?>
-
-</body>
+   </body>
 </html>

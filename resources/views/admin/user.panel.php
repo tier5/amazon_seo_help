@@ -1,5 +1,4 @@
-@include('admin/header')
-@include('admin/sidebar')
+@include('header')
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -19,7 +18,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         
         <li class="bounceInLeft animated">
-          <a href="{{ route('/dashboard') }}">
+          <a href="dashboard.html">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
@@ -27,51 +26,7 @@
           <a href="user.html">
             <i class="fa fa-users" aria-hidden="true"></i> <span>Users</span>
           </a>
-        </li>
-
-        <!-- <li class="active bounceInLeft animated">
-          <a href="{{ route('/package') }}">
-            <i class="fa fa-users" aria-hidden="true"></i> <span>Package</span>
-          </a>
-        </li> 
-        <li class="active bounceInLeft animated">
-          <a href="{{ route('/packagefeature') }}">
-            <i class="fa fa-users" aria-hidden="true"></i> <span>Package feature</span>
-          </a>
-        </li>
-        <li class="active bounceInLeft animated">
-          <a href="{{ route('/services') }}">
-            <i class="fa fa-users" aria-hidden="true"></i> <span>Services</span>
-          </a>
-        </li> --> 
-
-        <li class="treeview bounceInLeft animated">
-          <a href="javascript:void(0)">
-            <i class="fa fa-area-chart" aria-hidden="true"></i>
-            <span>Package</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active bounceInLeft animated">
-              <a href="{{ route('/package') }}">
-                <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Add Package</span>
-              </a>
-            </li>
-            <li class="active bounceInLeft animated">
-              <a href="{{ route('/packagefeature') }}">
-                <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Add Feature</span>
-              </a>
-            </li>
-            <li class="active bounceInLeft animated">
-              <a href="{{ route('/services') }}">
-                <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Add Services</span>
-              </a>
-            </li> 
-          </ul>
-        </li>
-
+        </li>  
         <li class="treeview bounceInLeft animated">
           <a href="reports.html">
             <i class="fa fa-area-chart" aria-hidden="true"></i>
@@ -87,15 +42,13 @@
             
           </ul>
         </li>
-
-
         <li class="bounceInLeft animated">
           <a href="inbox.html">
             <i class="fa fa-envelope" aria-hidden="true"></i> <span>Inbox</span>
           </a>
         </li>
         <li class="bounceInLeft animated">
-          <a href="{{ route('/profile') }}">
+          <a href="profile.html">
             <i class="fa fa-user" aria-hidden="true"></i>
              <span>Profile</span>
           </a>
@@ -123,104 +76,99 @@
               
               <div class="box-main">
                 <div class="table-responsive">
+                  <table class="table" id="myRadioGroup">
+                     <tr>
+                        <td width="200px">Package Selection & Purchase</td>
+                        <td>
+                        <input type="radio" name="cars" checked="checked" value="2"  /> <span class="seo-tag">SEO</span> 
+                        <input type="radio" name="cars" value="3" /> 
+                        <span class="ppc-tag">PPC</span>
+                        </td> 
+                        
+                     </tr> 
+                     <tr>
+                        <td colspan="2">
+                          <div id="Cars2" class="desc">
+                              <table class="table">
+                                <tr>
+                                  <td><span class="count">1</span> <input type="radio" name=""> BRONZE PACKAGE</td>
+                                  <td><span class="count">2 </span><input type="radio" name=""> SILVER PACKAGE</td>
+                                  <td><span class="count">3 </span><input type="radio" name=""> GOLD PACKAGE</td>
+                                </tr>  
+                              </table>
+                          </div>
+                          <div id="Cars3" class="desc" style="display: none;">
+                              
+                              <table class="table">
+                                <tr>
+                                  <td><span class="count">1</span> <input type="radio" name=""> SILVER PACKAGE</td>
+                                  <td><span class="count">2 </span><input type="radio" name=""> GOLD PACKAGE</td>
+                                  <td><span class="count">3 </span><input type="radio" name=""> PLATINUM PACKAGE</td>
+                                </tr>  
+                              </table>
+
+
+                          </div>
+                        </td>  
+                     </tr>
+
+                  </table>
                     
                 </div> 
 
                 <div class="row">
                   <div class="col-md-12 col-sm-12">
-                      <h3>Amazon Seo Package</h3>
-                      <form method="post" method="post" action="{{ route('/packagerecord') }}">
-                      <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                      <h3>Amazon Seo Profile</h3>
                       <div class="row">
-                          <!-- <div class="col-md-6 col-sm-6">
+                          <div class="col-md-12 col-sm-12">
                               <div class="form-group">
+                                  <label>User ID</label>
+                                  <input class="form-control" type="text" name="">
                               </div>
-                          </div> -->
-                          <div class="col-md-6 col-sm-6">
-                              <div class="form-group" style="float: left;">
-                                  <input class="btn btn-default" type="button" value="Add package"  id="addpackage" name="">
-                              </div> 
-                              <div class="form-group" style="float: right;padding-right: 269px;">
-                                  <!--<input class="btn btn-default" type="button" value="Remove package" id="removepackage" name="" > -->
-                              </div>  
                           </div>  
+                      </div>  
+                      <div class="row">
+                          <div class="col-md-6 col-sm-6">
+                              <div class="form-group">
+                                  <label>Email</label>
+                                  <input class="form-control" type="text" name="">
+                              </div>
+                          </div>
+                          <div class="col-md-6 col-sm-6">
+                              <div class="form-group">
+                                  <label>Password</label>
+                                  <input class="form-control" type="text" name="">
+                              </div>
+                          </div>  
+                      </div> 
+                      <div class="row">
+                           <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                  <label>New Password</label>
+                                  <input class="form-control" type="text" name="">
+                              </div>
+                           </div>
+                           <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                  <label>Retype Password</label>
+                                  <input class="form-control" type="text" name="">
+                              </div>
+                           </div>
                       </div>
-                      <div id="packagediv">
-                          <div class="row">
-                              <!-- <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                  </div>
-                              </div> -->
-                              <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                  <label>Services name</label>
-                                      <select name="service[]" >
-                                        @foreach($items['servicename'] as $k => $v)
-                                        <option value="<?php echo $items['serviceid'][$k];?>"><?php echo $v;?></option>    
-                                        @endforeach  
-                                      </select>
-                                  </div>
-                              </div>  
-                          </div>  
-                          <div class="row">
-                              <!-- <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                  </div>
-                              </div> -->
-                              <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                      <label>Package name</label>
-                                      <input class="form-control" type="text" name="package[]">
-                                  </div>
-                              </div>  
-                          </div> 
-                          <div class="row">
-                               <!-- <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                  </div>
-                               </div> -->
-                               <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                      <label>Package tag</label>
-                                      <input class="form-control" type="text" name="packagetag[]">
-                                  </div>
-                               </div>
-                          </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                      <label>Package feature</label>
-                                      <!--<input class="form-control" type="text" name="packagetag[]"> -->
-                                      <select class="form-control" multiple name="feature[0][]" >
-                                        @foreach($items['featurename'] as $k => $v)
-                                        <option value="<?php echo $items['featureid'][$k];?>"><?php echo $v;?></option>    
-                                        @endforeach  
-                                      </select>
-                                  </div>
-                               </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                  <div class="form-group">
-                                      <label>Package price</label>
-                                      <input class="form-control" type="text" name="price[]">
-                                  </div>
-                              </div>  
-                               </div>
-                          </div>
-                     </div> 
-                     <div class="row">
-                          <div class="col-md-6 col-sm-6">
+                      <div class="row">
+                          <div class="col-md-12 col-sm-12">
                               <div class="form-group">
                                   <input class="btn btn-default" type="submit" value="Submit" name="">
                               </div>  
                           </div>  
                       </div>
-                   </form>    
+
+
+
                   </div>
                 </div>  
 
-                <!-- <div class="row">
+                <div class="row">
                 <div class="col-md-12 col-sm-12">
                       <h3>Amazon Seller Account Details</h3>
                       <div class="row">
@@ -284,7 +232,7 @@
                       </div>
 
                 </div>
-                </div> -->
+                </div>
 
                   <div class="clearfix"></div>  
               </div>
@@ -495,11 +443,11 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3.1.1 -->
-<script src="<?php echo asset('admin/js/jquery-3.1.1.min.js') ?>"></script>
+<script src="js/jquery-3.1.1.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="<?php echo asset('admin/js/bootstrap.min.js') ?>"></script>
-<script src="<?php echo asset('admin/js/adminlte.js')?>"></script>
-<script src="<?php echo asset('admin/js/jquery.slimscroll.min.js')?>"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/adminlte.js"></script>
+<script src="js/jquery.slimscroll.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
