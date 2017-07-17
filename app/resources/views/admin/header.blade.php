@@ -77,8 +77,8 @@
                   }
 
                 //alert(opt);  
-                var abcd = "<div id='packagediv' class='add-pack'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Service name</label><select name='service[]'>"+opt2+"</select></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package name</label><input class='form-control' name='package[]' type='text' ></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package tag</label><input class='form-control' type='text' name='packagetag[]'></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package feature</label><select class='form-control' multiple name='feature["+select+"][]'>"+opt        
-               +"</select></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><input class='btn btn-default remove' type='button' value='Remove package' name=''></div></div><br></div>";
+                var abcd = "<div id='packagediv' class='add-pack'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Service name</label><select required name='service[]'>"+opt2+"</select></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package name</label><input required class='form-control' name='package[]' type='text' ></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package tag</label><input required class='form-control' type='text' name='packagetag[]'></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Package feature</label><select required class='form-control' multiple name='feature["+select+"][]'>"+opt        
+               +"</select></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><input required class='btn btn-default remove' type='button' value='Remove package' name=''></div></div><br></div>";
 
                 $('#packagediv').append(abcd);
             });
@@ -89,7 +89,7 @@
 
         $("#addfeature").click(function() {
                 
-                var abcde = "<div id='packagediv'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Feature name</label><input class='form-control' name='feature[]' type='text' ></div></div></div>   <div class='row'><div class='col-md-6 col-sm-6'><input class='btn btn-default remove' type='button' value='Remove feature' name=''></div></div><br></div>";
+                var abcde = "<div id='packagediv'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Feature name</label><input required class='form-control' name='feature[]' type='text' ></div></div></div>   <div class='row'><div class='col-md-6 col-sm-6'><input class='btn btn-default remove' type='button' value='Remove feature' name=''></div></div><br></div>";
 
                 $('#packagediv').append(abcde);
             });
@@ -99,7 +99,7 @@
 
         $("#addservice").click(function() {
                 //alert(999);
-                var abcde = "<div id='packagediv'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Service name</label><input class='form-control' name='service[]' type='text' ></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><input class='btn btn-default remove' type='button' value='Remove feature' name=''></div></div><br></div>";
+                var abcde = "<div id='packagediv'><div class='row'><div class='col-md-6 col-sm-6'><div class='form-group'><label>Service name</label><input required class='form-control' name='service[]' type='text' ></div></div></div><div class='row'><div class='col-md-6 col-sm-6'><input class='btn btn-default remove' type='button' value='Remove feature' name=''></div></div><br></div>";
 
                 $('#packagediv').append(abcde);
             });

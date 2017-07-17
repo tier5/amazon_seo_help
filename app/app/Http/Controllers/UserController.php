@@ -39,19 +39,35 @@ class UserController extends BaseController
 				3=> 'role',
 				4=> 'userName'
 			);
-		
+			
 			if($requestData['search']['value']){
 			    $queryString = $requestData['search']['value']; 
-			    
-				$data = User::where('firstname', 'LIKE', "%$queryString%")
-					         ->orWhere('lastname', 'LIKE', "%$queryString%")
+			   
+
+				$data = User::where(function($query){
+					$query->where('role', '!=', 'admin')
+					;
+				})->Where(function($query) {
+					$query->Where('firstname', 'LIKE', "%$queryString%");
+			    	$query->orWhere('lastname', 'LIKE', "%$queryString%")
+			        ->orWhere('email', 'LIKE', "%$queryString%")
+			        ->orWhere('userName', 'LIKE', "%$queryString%");
+			    	
+			    })->orderBy('firstname')->paginate(5);
+			    //dd($data);
+			    /*->orderBy('firstname')->paginate(5);*/
+				/*$data = User::where('role', '!=', 'admin')
+							 ->Where('firstname', 'LIKE', "%$queryString%")
+							 ->orWhere('lastname', 'LIKE', "%$queryString%")
 					         ->orWhere('email', 'LIKE', "%$queryString%")
-					         ->orWhere('role', 'LIKE', "%$queryString%")
-					         ->orWhere('username', 'LIKE', "%$queryString%")
-					         ->orderBy('firstname')->paginate(5);
+					         ->orWhere('userName', 'LIKE', "%$queryString%")
+					         ->orderBy('firstname')->paginate(5);*/
+					         //dd($data);
+					     
 			}else{
-				$data = User::where('id', '!=', 1)->get();
+				$data = User::where('role', '!=', 'admin')->get();
 			}
+
 			$employee = array();			
 			foreach ($data as $result) 
 			{   
@@ -66,6 +82,7 @@ class UserController extends BaseController
 						
 			//$totalFiltered = count($employee);
 			$totalData = count($employee);
+
 			if($requestData['search']['value'])
 				$totalFiltered = count($employee);
 			else

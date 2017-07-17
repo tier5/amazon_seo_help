@@ -20,7 +20,7 @@
           </a>
         </li>
         <li class="active bounceInLeft animated">
-          <a href="user.html">
+          <a href="{{ route('/user') }}">
             <i class="fa fa-users" aria-hidden="true"></i> <span>Users</span>
           </a>
         </li>
