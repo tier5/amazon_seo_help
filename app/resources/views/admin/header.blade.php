@@ -38,9 +38,9 @@
   <link rel="stylesheet" href="<?php echo asset('admin/css/animate.css')?>" type="text/css"> 
   <link rel="stylesheet" href="<?php echo asset('admin/css/style.css')?>" type="text/css"> 
    
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-  
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" >
       $(document).ready(function() {
@@ -48,7 +48,8 @@
         $.noConflict();  
         var dataTable = $('#employee-grid').DataTable( {
           "processing": true,
-          "serverSide": true,
+          //"serverSide": true,
+          "autoWidth": false,
           "ajax":{
             url :"{{ URL::to('/users') }}", // json datasource 
             type: "post",  // method  , by default get

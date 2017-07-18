@@ -28,6 +28,7 @@ class UserController extends BaseController
 		print_r($user);
 		die;*/
 		$requestData = Input::all();
+
 		/*echo '<pre>';
 		print_r($requestData);
 		die;*/
@@ -42,35 +43,36 @@ class UserController extends BaseController
 			
 			if($requestData['search']['value']){
 			    $queryString = $requestData['search']['value']; 
-			   
-
-				$data = User::where(function($query){
-					$query->where('role', '!=', 'admin')
-					;
+			  /* $data = User::where(function($query){
+					$query->where('role', '!=', 'admin');
 				})->Where(function($query) {
 					$query->Where('firstname', 'LIKE', "%$queryString%");
 			    	$query->orWhere('lastname', 'LIKE', "%$queryString%")
 			        ->orWhere('email', 'LIKE', "%$queryString%")
 			        ->orWhere('userName', 'LIKE', "%$queryString%");
 			    	
-			    })->orderBy('firstname')->paginate(5);
+			    })->orderBy('firstname')->paginate(5);*/
 			    //dd($data);
 			    /*->orderBy('firstname')->paginate(5);*/
-				/*$data = User::where('role', '!=', 'admin')
-							 ->Where('firstname', 'LIKE', "%$queryString%")
+				$data = User::Where('firstname', 'LIKE', "%$queryString%")
 							 ->orWhere('lastname', 'LIKE', "%$queryString%")
 					         ->orWhere('email', 'LIKE', "%$queryString%")
 					         ->orWhere('userName', 'LIKE', "%$queryString%")
-					         ->orderBy('firstname')->paginate(5);*/
+					         ->where('role', '!=', 'admin')
+					         ->orderBy('firstname')->get();
 					         //dd($data);
+					         $totalFiltered = count($data);
 					     
 			}else{
 				$data = User::where('role', '!=', 'admin')->get();
+				$totalData = count($data);
+				$totalFiltered = $totalData; 
 			}
 
 			$employee = array();			
 			foreach ($data as $result) 
-			{   
+			{ 
+				if($result['role'] != 'admin'){  
 				$employee[] = array(
 						'0'       => "<a href=". route('/userdtls', $result['id']).">".$result['firstname']."</a>",
 						'1'       => $result['lastname'],
@@ -79,22 +81,28 @@ class UserController extends BaseController
 						'4'       => $result['userName']
 					);
 			}
+			}
 						
 			//$totalFiltered = count($employee);
-			$totalData = count($employee);
+			/*$totalData = count($employee);
 
-			if($requestData['search']['value'])
+			if($requestData['search']['value']){
 				$totalFiltered = count($employee);
-			else
+				
+			}else{
 				$totalFiltered = count($employee);
+				
+			}*/
 			//echo $totalData;
 			//die;
+			
 			$json_data = array(
 			"draw"            => intval( $requestData['draw'] ),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw. 
 			"recordsTotal"    => intval( $totalData ),  // total number of records
 			"recordsFiltered" => intval( $totalFiltered ), // total number of records after searching, if there is no searching then totalFiltered = totalData
 			"data"            => $employee   // total data array
 			);
+			//dd($json_data);
 		echo json_encode($json_data);
 	}
 	public function login(Request $request)
